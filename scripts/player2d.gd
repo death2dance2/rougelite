@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var map_layer: TileMapLayer = $"../TileMapLayer"
+@onready var ladder_anim: AnimatedSprite2D = $"../ladder"
 
 var target_position: Vector2 = Vector2.ZERO
 var is_moving: bool = false
@@ -67,7 +68,10 @@ func move() -> void:
 					tile_data = cell_matches_id(next_grid_pos, "block_type", 2)
 					if tile_data != null:
 						if tile_data == true:
-							ladder()
+							if ladder_anim.animation == "closed":
+								ladder_anim.play("opening")
+							else:
+								ladder()
 						else:
 							target_position = map_layer.map_to_local(next_grid_pos)
 							is_moving = true
@@ -114,3 +118,4 @@ func ladder():
 	var next_grid_pos = current_grid_pos + Vector2i(direction)
 	target_position = map_layer.map_to_local(next_grid_pos)
 	is_moving = true
+	ladder_anim.animation = "open"

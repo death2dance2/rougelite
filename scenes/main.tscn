@@ -348,6 +348,51 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
+}, {
+"duration": 9999999.0,
+"texture": ExtResource("4_tipki")
 }],
 "loop": 1,
 "name": &"opening",
@@ -379,5 +424,4 @@ texture_filter = 1
 position = Vector2(25, -25)
 sprite_frames = SubResource("SpriteFrames_sugp2")
 animation = &"open"
-frame_progress = 0.20003577
 script = ExtResource("9_85g3d")
