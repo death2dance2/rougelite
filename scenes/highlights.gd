@@ -5,15 +5,16 @@ extends Node2D
 @export var glow_intensity_change_speed: float = 5.0
 const Player2D = preload("res://scripts/player2d.gd")
 var player: Player2D = Player2D.new()
-var side_distance: float = player.tile_size
+var side_distance: float = (player.tile_size * 0.625)
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim: AnimatedSprite2D = $"."
 
 var glow_intensity: float = glow_intensity_min + (glow_intensity_max - glow_intensity_min) * 0.5
 var dimming: bool = false
 var squares_list: Array[Node2D] = []
 
 func _ready() -> void:
+	anim.animation = "default"
 	if anim:
 		squares_list.append(anim)
 		
@@ -24,6 +25,7 @@ func _ready() -> void:
 		
 		if anim and anim.sprite_frames:
 			side_square.texture = anim.sprite_frames.get_frame_texture(anim.animation, 0)
+			
 			
 		add_child(side_square)
 		side_square.position = dir * side_distance
