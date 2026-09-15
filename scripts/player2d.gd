@@ -64,7 +64,7 @@ func get_input() -> void:
 	if direction != Vector2.ZERO:
 		var current_grid_pos = map_layer.local_to_map(position)
 		var next_grid_pos = current_grid_pos + Vector2i(direction)
-		var tile_data = cell_matches_id(next_grid_pos, "wall", 1)
+		var tile_data = cell_matches_id(next_grid_pos, "block_type", 1)
 	
 		if tile_data != null:
 			if tile_data == true:
@@ -77,12 +77,14 @@ func get_input() -> void:
 
 func cell_matches_id(grid_pos: Vector2i, layer_name: String, target_id: int) -> bool:
 	var tile_data: TileData = map_layer.get_cell_tile_data(grid_pos)
-	
+
 	if tile_data:
 		var value = tile_data.get_custom_data(layer_name)
-		return int(value) == target_id
-		
+		if value != null:
+			return int(value) == target_id
+
 	return false
+
 
 	
 	var Position = position

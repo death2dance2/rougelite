@@ -83,6 +83,11 @@ animations = [{
 "loop": 1,
 "name": &"not_highlighted",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"nothing",
+"speed": 5.0
 }]
 
 [node name="player" type="CharacterBody2D" unique_id=736314522]
@@ -100,5 +105,4 @@ animation = &"right"
 texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_8vd5c")
-animation = &"not_highlighted"
 script = ExtResource("10_3v2ag")
