@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var map_layer: TileMapLayer = $"../TileMapLayer"
 @onready var ladder_anim: AnimatedSprite2D = $"../ladder"
+@onready var fade_out_anim: AnimatedSprite2D = $"../Camera2D/Fade_out"
+
 
 var target_position: Vector2 = Vector2.ZERO
 var is_moving: bool = false
@@ -19,6 +21,7 @@ func _ready() -> void:
 	position = snapped_start_pos
 	target_position = snapped_start_pos
 	can_move = true
+	fade_out_anim.hide()
 
 
 func _physics_process(delta: float) -> void:
@@ -34,6 +37,10 @@ func _physics_process(delta: float) -> void:
 			# freeze if you is going into a ladder
 			if cell_matches_id(current_grid_pos, "block_type", 2):
 				can_move = false
+				fade_out_anim.show()
+				fade_out_anim.play("default")
+				await fade_out_anim.animation_finished
+				fade_out_anim.hide()
 	else:
 		move()
 
@@ -118,4 +125,6 @@ func ladder():
 	var next_grid_pos = current_grid_pos + Vector2i(direction)
 	target_position = map_layer.map_to_local(next_grid_pos)
 	is_moving = true
+	ladder_anim.animation = "opening"
+	await ladder_anim.animation_finished
 	ladder_anim.animation = "open"

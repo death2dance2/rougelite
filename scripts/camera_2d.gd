@@ -4,6 +4,9 @@ extends Camera2D
 @export var target: Node2D
 @export var follow_speed: float = 15.0
 
+const Player2D = preload("res://scripts/player2d.gd")
+var player: Player2D = Player2D.new()
+
 func _ready() -> void:
 	make_current()
 	
