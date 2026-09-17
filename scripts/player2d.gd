@@ -1,14 +1,13 @@
 class_name Player2D
-extends CharacterBody2D
+extends CharacterBody2D 
 
 @export var tile_size: float = 16
 @export var speed: float = 200
-
+@export var current_scene: float = 1
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var map_layer: TileMapLayer = $"../TileMapLayer"
 @onready var ladder_anim: AnimatedSprite2D = $"../ladder"
 @onready var fade_out_anim: AnimatedSprite2D = $"../Camera2D/Fade_out"
-
 
 var target_position: Vector2 = Vector2.ZERO
 var is_moving: bool = false
@@ -21,8 +20,10 @@ func _ready() -> void:
 	position = snapped_start_pos
 	target_position = snapped_start_pos
 	can_move = true
+	fade_out_anim.show()
+	fade_out_anim.play_backwards("fade_out")
+	await  fade_out_anim.animation_finished
 	fade_out_anim.hide()
-
 
 func _physics_process(delta: float) -> void:
 	if is_moving:
@@ -38,7 +39,11 @@ func _physics_process(delta: float) -> void:
 			if cell_matches_id(current_grid_pos, "block_type", 2):
 				can_move = false
 				fade_out_anim.show()
-				fade_out_anim.play("default")
+				fade_out_anim.animation = "fade_out"
+				fade_out_anim.play()
+				await fade_out_anim.animation_finished
+				load_next_scene()
+				fade_out_anim.play_backwards()
 				await fade_out_anim.animation_finished
 				fade_out_anim.hide()
 	else:
@@ -76,9 +81,14 @@ func move() -> void:
 					if tile_data != null:
 						if tile_data == true:
 							if ladder_anim.animation == "closed":
-								ladder_anim.play("opening")
-							else:
+								ladder_anim.play()
+								ladder_anim.animation = "opening"
+								await ladder_anim.animation_finished
+								ladder_anim.animation = "open"
+								
+							if ladder_anim.animation == "open":
 								ladder()
+								
 						else:
 							target_position = map_layer.map_to_local(next_grid_pos)
 							is_moving = true
@@ -104,7 +114,7 @@ func get_input():
 	elif Input.is_action_just_pressed("move_up"):
 		direction = Vector2.UP
 	
-	return direction
+	return direction 
 	
 
 func cell_matches_id(grid_pos: Vector2i, layer_name: String, target_id: int) -> bool:
@@ -125,6 +135,25 @@ func ladder():
 	var next_grid_pos = current_grid_pos + Vector2i(direction)
 	target_position = map_layer.map_to_local(next_grid_pos)
 	is_moving = true
-	ladder_anim.animation = "opening"
-	await ladder_anim.animation_finished
-	ladder_anim.animation = "open"
+	
+func load_next_scene():
+	var current_level = current_scene
+	var level_data = load(current_level).instantiate()
+	add_child(level_data)
+	
+	if is_instance_valid(level_data):
+		level_data.queue_free()
+
+	var path = get_tree().current_scene.scene_file_path
+	
+	var number_string = ""
+	for character in path:
+		if character.is_valid_int():
+			number_string += character
+			
+	var current_scene_num = int(number_string)
+	
+	var next_scene_num = current_scene_num + 1
+	var next_scene_path = "res://scenes/scene_" + str(next_scene_num) + ".tscn"
+	 
+	get_tree().change_scene_to_file(next_scene_path)
