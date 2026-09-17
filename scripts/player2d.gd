@@ -138,7 +138,7 @@ func ladder():
 	
 func load_next_scene():
 	var current_level = current_scene
-	var level_data = load(current_level).instantiate()
+	var level_data = load("res://scenes/scene_%d.tscn" % current_level).instantiate()
 	add_child(level_data)
 	
 	if is_instance_valid(level_data):
@@ -151,9 +151,8 @@ func load_next_scene():
 		if character.is_valid_int():
 			number_string += character
 			
-	var current_scene_num = int(number_string)
-	
-	var next_scene_num = current_scene_num + 1
-	var next_scene_path = "res://scenes/scene_" + str(next_scene_num) + ".tscn"
-	 
+	var current_scene_num = int(number_string) 
+	var next_scene_num = current_scene_num + 1 
+	var next_scene_path = "res://scenes/scene_%d.tscn" % next_scene_num
+
 	get_tree().change_scene_to_file(next_scene_path)
