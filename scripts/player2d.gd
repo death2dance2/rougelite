@@ -1,19 +1,18 @@
 class_name Player2D
-extends CharacterBody2D 
+extends CharacterBody2D
 
 @export var tile_size: float = 16
 @export var speed: float = 200
-@export var current_scene: float = 1
+
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var map_layer: TileMapLayer = $"../TileMapLayer"
 @onready var ladder_anim: AnimatedSprite2D = $"../ladder"
 @onready var fade_out_anim: AnimatedSprite2D = $"../Camera2D/Fade_out"
-@onready var door_anim: AnimatedSprite2D = $"../door"
+
 
 var target_position: Vector2 = Vector2.ZERO
 var is_moving: bool = false
 var can_move: bool = false
-var current_level_instance: Node = null
 
 
 func _ready() -> void:
@@ -22,10 +21,8 @@ func _ready() -> void:
 	position = snapped_start_pos
 	target_position = snapped_start_pos
 	can_move = true
-	fade_out_anim.show()
-	fade_out_anim.play_backwards("fade_out")
-	await  fade_out_anim.animation_finished
 	fade_out_anim.hide()
+
 
 func _physics_process(delta: float) -> void:
 	if is_moving:
@@ -37,14 +34,11 @@ func _physics_process(delta: float) -> void:
 			is_moving = false
 			
 			var current_grid_pos = map_layer.local_to_map(position)
+			# freeze if you is going into a ladder
 			if cell_matches_id(current_grid_pos, "block_type", 2):
 				can_move = false
 				fade_out_anim.show()
-				fade_out_anim.animation = "fade_out"
-				fade_out_anim.play()
-				await fade_out_anim.animation_finished
-				load_next_scene()
-				fade_out_anim.play_backwards()
+				fade_out_anim.play("default")
 				await fade_out_anim.animation_finished
 				fade_out_anim.hide()
 	else:
@@ -56,6 +50,7 @@ func move() -> void:
 		var direction = get_input()
 		var anim_direction = direction
 		
+		# animate
 		if anim_direction == Vector2.ZERO:
 			if anim.animation == "left":
 				anim.animation = "idle_left"
@@ -71,31 +66,32 @@ func move() -> void:
 		if direction != Vector2.ZERO:
 			var current_grid_pos = map_layer.local_to_map(position)
 			var next_grid_pos = current_grid_pos + Vector2i(direction)
+			var tile_data = cell_matches_id(next_grid_pos, "block_type", 1)
 		
-			if cell_matches_id(next_grid_pos, "block_type", 1):
-				print("movement blocked")
-			elif cell_matches_id(next_grid_pos, "block_type", 2):
-				if ladder_anim.animation == "closed":
-					ladder_anim.play()
-					ladder_anim.animation = "opening"
-					await ladder_anim.animation_finished
-					ladder_anim.animation = "open"
-					
-				if ladder_anim.animation == "open":
-					target_position = map_layer.map_to_local(next_grid_pos)
-					is_moving = true
-					
+			if tile_data != null:
+				if tile_data == true:
+					print("movement blocked")
 				else:
-					target_position = map_layer.map_to_local(next_grid_pos)
-					is_moving = true
-			elif cell_matches_id(next_grid_pos, "block_type", 4):
-				print("door")
-				if door_anim.animation == "door_down":
-					pass
+					tile_data = cell_matches_id(next_grid_pos, "block_type", 2)
+					if tile_data != null:
+						if tile_data == true:
+							if ladder_anim.animation == "closed":
+								ladder_anim.play("opening")
+							else:
+								ladder()
+						else:
+							target_position = map_layer.map_to_local(next_grid_pos)
+							is_moving = true
+					else:
+						target_position = map_layer.map_to_local(next_grid_pos)
+						is_moving = true
+			else:
+				print("No tile painted here! Cannot walk into empty grid space.")
 		
 func get_input():
 	var direction := Vector2.ZERO
 	
+	# get input
 	if Input.is_action_just_pressed("move_right"):
 		direction = Vector2.RIGHT
 			
@@ -108,7 +104,7 @@ func get_input():
 	elif Input.is_action_just_pressed("move_up"):
 		direction = Vector2.UP
 	
-	return direction 
+	return direction
 	
 
 func cell_matches_id(grid_pos: Vector2i, layer_name: String, target_id: int) -> bool:
@@ -120,6 +116,15 @@ func cell_matches_id(grid_pos: Vector2i, layer_name: String, target_id: int) -> 
 			return int(value) == target_id
 
 	return false
-	
-func load_next_scene():
-	pass
+	var Position = position
+
+func ladder():
+	var direction = get_input()
+	print("at ladder")
+	var current_grid_pos = map_layer.local_to_map(position)
+	var next_grid_pos = current_grid_pos + Vector2i(direction)
+	target_position = map_layer.map_to_local(next_grid_pos)
+	is_moving = true
+	ladder_anim.animation = "opening"
+	await ladder_anim.animation_finished
+	ladder_anim.animation = "open"

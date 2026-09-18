@@ -13,7 +13,7 @@ func _ready() -> void:
 	if not target:
 		target = get_tree().get_first_node_in_group("player")
 		
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if target == null:
 		return
 		
