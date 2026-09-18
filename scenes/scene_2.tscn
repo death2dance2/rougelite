@@ -148,12 +148,12 @@
 [ext_resource type="Texture2D" uid="uid://b25hfucetq8vl" path="res://art/Fade_Out/fade_out144.png" id="146_aprny"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://scenes/player.tscn" id="147_myppq"]
 [ext_resource type="Texture2D" uid="uid://bvtnlt00t6aly" path="res://art/wall_map0.png" id="148_pwss8"]
-[ext_resource type="Texture2D" uid="uid://lqse1pagqefy" path="res://ladder/ladder0.png" id="149_te0c0"]
-[ext_resource type="Texture2D" uid="uid://ds2twe1b64mr1" path="res://ladder/ladder4.png" id="150_iy8x3"]
-[ext_resource type="Texture2D" uid="uid://cfk6bm3df5hyj" path="res://ladder/ladder1.png" id="151_m460x"]
-[ext_resource type="Texture2D" uid="uid://cacv6crhiiirn" path="res://ladder/ladder2.png" id="152_sj3ra"]
-[ext_resource type="Texture2D" uid="uid://vg62qhge7jbq" path="res://ladder/ladder3.png" id="153_p1u01"]
-[ext_resource type="Script" uid="uid://bo08ctfeha8yc" path="res://scripts/animated_sprite_2d.gd" id="154_6spwv"]
+[ext_resource type="Texture2D" uid="uid://lqse1pagqefy" path="res://art/ladder/ladder0.png" id="149_te0c0"]
+[ext_resource type="Texture2D" uid="uid://ds2twe1b64mr1" path="res://art/ladder/ladder4.png" id="150_iy8x3"]
+[ext_resource type="Texture2D" uid="uid://cfk6bm3df5hyj" path="res://art/ladder/ladder1.png" id="151_m460x"]
+[ext_resource type="Texture2D" uid="uid://cacv6crhiiirn" path="res://art/ladder/ladder2.png" id="152_sj3ra"]
+[ext_resource type="Texture2D" uid="uid://vg62qhge7jbq" path="res://art/ladder/ladder3.png" id="153_p1u01"]
+[ext_resource type="Script" uid="uid://bo08ctfeha8yc" path="res://scripts/ladder.gd" id="154_6spwv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0cfpp"]
 animations = [{

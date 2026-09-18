@@ -8,10 +8,12 @@ extends CharacterBody2D
 @onready var map_layer: TileMapLayer = $"../TileMapLayer"
 @onready var ladder_anim: AnimatedSprite2D = $"../ladder"
 @onready var fade_out_anim: AnimatedSprite2D = $"../Camera2D/Fade_out"
+@onready var door_anim: AnimatedSprite2D = $"../door"
 
 var target_position: Vector2 = Vector2.ZERO
 var is_moving: bool = false
 var can_move: bool = false
+var current_level_instance: Node = null
 
 
 func _ready() -> void:
@@ -35,7 +37,6 @@ func _physics_process(delta: float) -> void:
 			is_moving = false
 			
 			var current_grid_pos = map_layer.local_to_map(position)
-			# freeze if you is going into a ladder
 			if cell_matches_id(current_grid_pos, "block_type", 2):
 				can_move = false
 				fade_out_anim.show()
@@ -55,7 +56,6 @@ func move() -> void:
 		var direction = get_input()
 		var anim_direction = direction
 		
-		# animate
 		if anim_direction == Vector2.ZERO:
 			if anim.animation == "left":
 				anim.animation = "idle_left"
@@ -71,37 +71,31 @@ func move() -> void:
 		if direction != Vector2.ZERO:
 			var current_grid_pos = map_layer.local_to_map(position)
 			var next_grid_pos = current_grid_pos + Vector2i(direction)
-			var tile_data = cell_matches_id(next_grid_pos, "block_type", 1)
 		
-			if tile_data != null:
-				if tile_data == true:
-					print("movement blocked")
+			if cell_matches_id(next_grid_pos, "block_type", 1):
+				print("movement blocked")
+			elif cell_matches_id(next_grid_pos, "block_type", 2):
+				if ladder_anim.animation == "closed":
+					ladder_anim.play()
+					ladder_anim.animation = "opening"
+					await ladder_anim.animation_finished
+					ladder_anim.animation = "open"
+					
+				if ladder_anim.animation == "open":
+					target_position = map_layer.map_to_local(next_grid_pos)
+					is_moving = true
+					
 				else:
-					tile_data = cell_matches_id(next_grid_pos, "block_type", 2)
-					if tile_data != null:
-						if tile_data == true:
-							if ladder_anim.animation == "closed":
-								ladder_anim.play()
-								ladder_anim.animation = "opening"
-								await ladder_anim.animation_finished
-								ladder_anim.animation = "open"
-								
-							if ladder_anim.animation == "open":
-								ladder()
-								
-						else:
-							target_position = map_layer.map_to_local(next_grid_pos)
-							is_moving = true
-					else:
-						target_position = map_layer.map_to_local(next_grid_pos)
-						is_moving = true
-			else:
-				print("No tile painted here! Cannot walk into empty grid space.")
+					target_position = map_layer.map_to_local(next_grid_pos)
+					is_moving = true
+			elif cell_matches_id(next_grid_pos, "block_type", 4):
+				print("door")
+				if door_anim.animation == "door_down":
+					pass
 		
 func get_input():
 	var direction := Vector2.ZERO
 	
-	# get input
 	if Input.is_action_just_pressed("move_right"):
 		direction = Vector2.RIGHT
 			
@@ -126,33 +120,6 @@ func cell_matches_id(grid_pos: Vector2i, layer_name: String, target_id: int) -> 
 			return int(value) == target_id
 
 	return false
-	var Position = position
-
-func ladder():
-	var direction = get_input()
-	print("at ladder")
-	var current_grid_pos = map_layer.local_to_map(position)
-	var next_grid_pos = current_grid_pos + Vector2i(direction)
-	target_position = map_layer.map_to_local(next_grid_pos)
-	is_moving = true
 	
 func load_next_scene():
-	var current_level = current_scene
-	var level_data = load("res://scenes/scene_%d.tscn" % current_level).instantiate()
-	add_child(level_data)
-	
-	if is_instance_valid(level_data):
-		level_data.queue_free()
-
-	var path = get_tree().current_scene.scene_file_path
-	
-	var number_string = ""
-	for character in path:
-		if character.is_valid_int():
-			number_string += character
-			
-	var current_scene_num = int(number_string) 
-	var next_scene_num = current_scene_num + 1 
-	var next_scene_path = "res://scenes/scene_%d.tscn" % next_scene_num
-
-	get_tree().change_scene_to_file(next_scene_path)
+	pass

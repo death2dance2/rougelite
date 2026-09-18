@@ -3,6 +3,8 @@ extends AnimatedSprite2D
 @onready var anim: AnimatedSprite2D = $"."
 @onready var map_layer: TileMapLayer = $"../TileMapLayer"
 
+var taken_spaces = {}
+
 func _ready() -> void:
 	anim.animation = "closed"
 	_find_sprite_loop()
@@ -20,10 +22,14 @@ func _find_sprite_loop() -> void:
 		if tile_data:
 			var block_value = tile_data.get_custom_data("block_type")
 			
-			if block_value != null and int(block_value) == 2: 
-				move_sprite_to_tile(anim, map_layer, cell)
-				found_target = true
-				break
+			var avar = len(taken_spaces)
+			for i in range(avar):
+				if block_value != null and int(block_value) == 2 and (taken_spaces[i] != block_value):
+					taken_spaces[(avar + 1)] = tile_data
+					move_sprite_to_tile(anim, map_layer, cell)
+					found_target = true
+					clone_myself()
+					break
 				
 	if not found_target:
 		print("Could not find a striped tile on the map layout")
@@ -34,3 +40,8 @@ func move_sprite_to_tile(sprite: Node2D, target_layer: TileMapLayer, tile_coords
 		sprite.global_position = target_layer.to_global(local_pixel_pos)
 	else:
 		print("no valid square")
+
+func clone_myself():
+	var clone = duplicate()
+	get_parent().add_child(clone)
+	clone.position += Vector2(6, 6)
