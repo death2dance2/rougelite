@@ -23,10 +23,12 @@ func _find_sprite_loop() -> void:
 			if block_value != null and int(block_value) == 2: 
 				move_sprite_to_tile(anim, map_layer, cell)
 				found_target = true
+				anim.visible = true
 				break
 				
 	if not found_target:
-		print("Could not find a striped tile on the map layout")
+		print("Could not find a ladder tile on the tilemap layout")
+		anim.visible = false
 
 func move_sprite_to_tile(sprite: Node2D, target_layer: TileMapLayer, tile_coords: Vector2i) -> void:
 	if is_instance_valid(sprite) and target_layer:

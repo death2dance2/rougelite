@@ -22,6 +22,7 @@ func _ready() -> void:
 	target_position = snapped_start_pos
 	can_move = true
 	fade_out_anim.hide()
+	fade_out_anim.animation = "hidden"
 
 
 func _physics_process(delta: float) -> void:

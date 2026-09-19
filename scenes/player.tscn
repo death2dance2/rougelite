@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://byt1qj4x3ntga" path="res://art/player/player_sprite1.png" id="7_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://cx3j1jguvp3o" path="res://art/player/player_sprite2.png" id="8_oprun"]
 [ext_resource type="Texture2D" uid="uid://j8ugbggmst8m" path="res://art/player/player_sprite3.png" id="9_a8ls1"]
-[ext_resource type="Script" uid="uid://pab5e5hjmn7t" path="res://scripts/highlights.gd" id="10_3v2ag"]
-[ext_resource type="Texture2D" uid="uid://caddb8ltya8rv" path="res://art/highlight/highlight0.png" id="10_d2wvv"]
-[ext_resource type="Texture2D" uid="uid://ctr76ghsqj2c1" path="res://art/highlight/highlight1.png" id="11_3v2ag"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onpc1"]
 animations = [{
@@ -66,30 +63,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8vd5c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_d2wvv")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_3v2ag")
-}],
-"loop": 1,
-"name": &"not_highlighted",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"nothing",
-"speed": 5.0
-}]
-
 [node name="player" type="CharacterBody2D" unique_id=736314522]
 script = ExtResource("1_ur7pv")
 
@@ -98,11 +71,3 @@ texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_onpc1")
 animation = &"right"
-
-[node name="Highlights" type="Node2D" parent="." unique_id=219627667]
-
-[node name="squares" type="AnimatedSprite2D" parent="Highlights" unique_id=2078555980]
-texture_filter = 1
-scale = Vector2(0.03, 0.03)
-sprite_frames = SubResource("SpriteFrames_8vd5c")
-script = ExtResource("10_3v2ag")
