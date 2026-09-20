@@ -605,6 +605,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1m7le"]
+vertices = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2tiby"]
+vertices = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
 texture = ExtResource("3_jyhfs")
 texture_region_size = Vector2i(10, 10)
@@ -708,6 +720,7 @@ texture_region_size = Vector2i(10, 10)
 1:2/0/custom_data_0 = 1
 1:1/0 = 0
 1:1/0/terrain_set = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1m7le")
 0:1/0 = 0
 0:1/0/terrain_set = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
@@ -857,6 +870,7 @@ texture_region_size = Vector2i(10, 10)
 7:5/0 = 0
 7:5/0/terrain_set = 0
 7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
+7:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2tiby")
 7:5/0/custom_data_0 = 2
 6:5/0 = 0
 6:5/0/terrain_set = 0
@@ -906,6 +920,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "wall"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+navigation_layer_0/layers = 1
 custom_data_layer_0/name = "block_type"
 custom_data_layer_0/type = 2
 sources/3 = SubResource("TileSetAtlasSource_tbgi4")
@@ -949,6 +964,14 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qqwal"]
+vertices = PackedVector2Array(39, -19, 49, -19, 49, 19, 39, 19, 11, 11, 11, -1, 21, -19, 21, -29, 39, -29, -31, -19, -1, -1, 39, 29, 21, 29, 21, 19, -21, 19, -1, 11, -21, 29, -39, 29, -39, 19, -49, 19, -49, -19, -39, -19, -39, -29, -31, -29)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 0), PackedInt32Array(6, 0, 5), PackedInt32Array(9, 6, 5, 10), PackedInt32Array(3, 11, 12, 13), PackedInt32Array(4, 3, 13), PackedInt32Array(4, 13, 14, 15), PackedInt32Array(14, 16, 17, 18), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(14, 18, 21, 9, 10, 15), PackedInt32Array(21, 22, 23, 9)])
+parsed_geometry_type = 1
+source_geometry_mode = 2
+source_geometry_group_name = &"navagation_source"
+agent_radius = 1.0
+
 [node name="main" type="Node2D" unique_id=1325483065]
 script = ExtResource("1_choun")
 
@@ -974,12 +997,12 @@ scale = Vector2(33.300003, 33.300003)
 tile_size = 10.0
 speed = 5.0
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=567643063]
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=567643063 groups=["navagation_source"]]
 z_index = -5
 texture_filter = 1
 position = Vector2(-4.7683716e-07, -4.7683716e-07)
 scale = Vector2(1.0000001, 1.0000001)
-tile_map_data = PackedByteArray("AAD//wMAAwAFAAIAAAAAAAMAAwAFAAIAAAABAAMAAwAFAAIAAAACAAMAAwAEAAMAAAADAAMAAwAEAAMAAAAEAAMAAwAEAAMAAAAFAAMAAwAFAAIAAAAGAAIAAwAFAAAAAAAGAAEAAwAGAAEAAAAGAAAAAwAGAAEAAAAGAP//AwAGAAEAAAAGAP7/AwAGAAEAAAAGAP3/AwAFAAAAAAAGAPz/AwAEAAQAAAAFAPz/AwADAAAAAAAEAPz/AwAEAAMAAAADAPz/AwAEAAMAAAACAPz/AwAEAAMAAAABAPz/AwADAAAAAAAAAPz/AwADAAAAAAD///z/AwADAAAAAAD+//z/AwADAAAAAAD8//z/AwAEAAMAAAD9//z/AwAEAAMAAAD7//z/AwAEAAMAAAD6//z/AwADAAAAAAD5//z/AwADAAQAAAD5//3/AwADAAIAAAD5//7/AwAGAAEAAAD7/wMAAwAEAAMAAAD8/wMAAwAEAAMAAAD9/wMAAwAEAAMAAAD+/wMAAwAFAAIAAAD6/wMAAwAFAAIAAAD5/wMAAwADAAUAAAD5/wIAAwADAAIAAAD5/wEAAwAGAAEAAAD5/wAAAwAGAAEAAAD5////AwAGAAEAAAAGAAMAAwAEAAUAAAAFAAIAAwADAAQAAAAFAP3/AwADAAUAAAAAAAIAAwADAAAAAAD//wIAAwADAAAAAAABAAIAAwAEAAQAAAD+/wIAAwADAAQAAAD+//3/AwADAAUAAAD///3/AwAFAAIAAAAAAP3/AwAFAAIAAAABAP3/AwAEAAUAAAD6//3/AwAEAAUAAAD6/wIAAwAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAD8/wMAAwAEAAMAAAD9/wMAAwAEAAMAAAD+/wMAAwAFAAIAAAD//wMAAwAFAAIAAAAAAAMAAwAFAAIAAAABAAMAAwAFAAIAAAACAAMAAwAEAAMAAAADAAMAAwAEAAMAAAAEAAMAAwAFAAIAAAAFAPz/AwAEAAQAAAAEAPz/AwADAAAAAAADAPz/AwAEAAMAAAACAPz/AwAEAAMAAAABAPz/AwADAAAAAAAAAPz/AwADAAAAAAD///z/AwADAAAAAAD+//z/AwADAAAAAAD9//z/AwAEAAMAAAD8//z/AwAEAAMAAAD7/wMAAwAFAAIAAAD6/wMAAwADAAUAAAD7//z/AwADAAAAAAD6//z/AwADAAQAAAD6//3/AwADAAIAAAD6//7/AwAGAAEAAAD6////AwAGAAEAAAD6/wAAAwAGAAEAAAD6/wEAAwAGAAEAAAD6/wIAAwADAAIAAAAFAAIAAwAFAAAAAAAFAAEAAwAGAAEAAAAFAAAAAwAGAAEAAAAFAP//AwAGAAEAAAAFAP7/AwAGAAEAAAAFAP3/AwAFAAAAAAAFAAMAAwAEAAUAAAD///3/AwAFAAIAAAAEAP3/AwADAAUAAAAAAP3/AwAFAAIAAAD7//3/AwAEAAUAAAD7/wIAAwAEAAQAAAAEAAIAAwADAAQAAAABAAIAAwAEAAQAAAAAAAIAAwADAAAAAAD//wIAAwADAAAAAAD+/wIAAwADAAQAAAD+//3/AwADAAUAAAABAP3/AwAEAAUAAAACAAAAAwABAAEAAAACAP//AwABAAEAAAACAP7/AwABAAEAAAACAP3/AwABAAEAAAADAP3/AwABAAEAAAADAP7/AwABAAEAAAADAP//AwABAAEAAAADAAAAAwABAAEAAAADAAEAAwABAAEAAAACAAEAAwABAAEAAAABAAEAAwABAAEAAAABAAAAAwABAAEAAAABAP//AwABAAEAAAABAP7/AwABAAEAAAAAAP7/AwABAAEAAAD///7/AwABAAEAAAD+//7/AwABAAEAAAD9//7/AwABAAEAAAD9//3/AwAHAAUAAAD8//3/AwABAAEAAAD8//7/AwABAAEAAAD7//7/AwABAAEAAAD7////AwABAAEAAAD7/wAAAwABAAEAAAD7/wEAAwABAAEAAAD8/wEAAwABAAEAAAD8/wAAAwABAAEAAAD8////AwABAAEAAAD9////AwABAAEAAAD9/wAAAwABAAEAAAD9/wEAAwABAAEAAAD9/wIAAwABAAEAAAD8/wIAAwABAAEAAAD+/wEAAwABAAEAAAD+/wAAAwABAAEAAAD+////AwABAAEAAAD/////AwABAAEAAAD//wAAAwABAAEAAAD//wEAAwABAAEAAAAAAAEAAwABAAEAAAAAAAAAAwAHAAQAAAAAAP//AwABAAEAAAACAAIAAwABAAEAAAADAAIAAwABAAEAAAAEAAEAAwABAAEAAAAEAAAAAwABAAEAAAAEAP//AwABAAEAAAAEAP7/AwABAAEAAAA=")
 tile_set = SubResource("TileSet_18hs7")
 
 [node name="Tile_Map_cover" type="TileMapLayer" parent="." unique_id=1450355750]
@@ -987,6 +1010,7 @@ z_index = -4
 texture_filter = 1
 position = Vector2(-4.7683716e-07, -4.7683716e-07)
 scale = Vector2(1.0000001, 1.0000001)
+tile_map_data = PackedByteArray("AAAAAAAAAwABAAEAAAD9//3/AwABAAEAAAA=")
 tile_set = SubResource("TileSet_18hs7")
 
 [node name="ladder" type="AnimatedSprite2D" parent="." unique_id=1178722325]
@@ -1000,4 +1024,8 @@ script = ExtResource("9_85g3d")
 
 [node name="monster" parent="." unique_id=969708228 instance=ExtResource("156_2tiby")]
 z_index = 5
-position = Vector2(-8, 4)
+position = Vector2(-4.9999995, 5)
+scale = Vector2(33.3, 33.3)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1738329379 groups=["navagation_source"]]
+navigation_polygon = SubResource("NavigationPolygon_qqwal")
