@@ -58,6 +58,8 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onpc1"]
+
 [node name="monster" type="CharacterBody2D" unique_id=969708228]
 script = ExtResource("1_fttm7")
 
@@ -67,3 +69,8 @@ texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_c5q2p")
 animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1962109331]
+position = Vector2(-9.536743e-08, 9.536743e-08)
+scale = Vector2(0.005, 0.005)
+shape = SubResource("RectangleShape2D_onpc1")
