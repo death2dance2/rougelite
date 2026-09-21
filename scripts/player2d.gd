@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var map_layer: TileMapLayer = $"../TileMapLayer"
 @onready var ladder_anim: AnimatedSprite2D = $"../ladder"
-@onready var fade_out_anim: AnimatedSprite2D = $"../Camera2D/Fade_out"
+@onready var fade_out_anim: AnimatedSprite2D = $"../Fade_out"
 
 
 var target_position: Vector2 = Vector2.ZERO
@@ -23,7 +23,6 @@ func _ready() -> void:
 	can_move = true
 	fade_out_anim.hide()
 	fade_out_anim.animation = "hidden"
-
 
 func _physics_process(delta: float) -> void:
 	if is_moving:

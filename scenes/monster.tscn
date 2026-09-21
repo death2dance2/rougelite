@@ -35,10 +35,19 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_ga5te")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_rux75")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3_481d3")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_iyrhi")
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 2.5
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -53,14 +62,23 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_s53e4")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mrqeg")
+}],
+"loop": 1,
+"name": &"still",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onpc1"]
 
 [node name="monster" type="CharacterBody2D" unique_id=969708228]
+scale = Vector2(30, 30)
 script = ExtResource("1_fttm7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1166055053]
@@ -68,7 +86,7 @@ z_index = 5
 texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_c5q2p")
-animation = &"idle"
+animation = &"still"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1962109331]
 position = Vector2(-9.536743e-08, 9.536743e-08)

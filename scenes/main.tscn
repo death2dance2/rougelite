@@ -1060,7 +1060,7 @@ script = ExtResource("9_85g3d")
 
 [node name="monster" parent="." unique_id=969708228 instance=ExtResource("156_2tiby")]
 z_index = 5
-position = Vector2(-4.9999995, 5)
+position = Vector2(5.0000014, -63.000008)
 scale = Vector2(33.3, 33.3)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1738329379 groups=["navagation_source"]]
