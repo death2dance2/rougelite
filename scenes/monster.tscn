@@ -90,7 +90,7 @@ animation = &"still"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1962109331]
 position = Vector2(-9.536743e-08, 9.536743e-08)
-scale = Vector2(0.005, 0.005)
+scale = Vector2(1e-05, 1e-05)
 shape = SubResource("RectangleShape2D_onpc1")
 
 [node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=1336169283]

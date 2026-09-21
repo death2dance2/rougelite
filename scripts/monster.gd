@@ -4,11 +4,13 @@ const Player2D = preload("res://scripts/player2d.gd")
 
 @export var monster_type: String = "basic statue"
 
-var player: Player2D = Player2D.new()
-var tile_size: float = player.tile_size
+@onready var player = $"../player"
+var player_script: Player2D = Player2D.new()
+var tile_size: float = player_script.tile_size
 var current_path: Array[Vector2] = []
 var speed = tile_size
 var direction = Vector2.RIGHT
+var last_position = global_position
 
 var stats = {
 	"sight distance": 7,
@@ -33,36 +35,29 @@ func _ready() -> void:
 func set_target_position(target_pos: Vector2) -> void:
 	nav_agent.target_position = target_pos
 
-func _physics_process(delta: float) -> void:
-	if nav_agent.is_navigation_finished():
-		return
-	
-	var current_agent_position: Vector2 = global_position
-	var next_path_position: Vector2 = nav_agent.get_next_path_position()
-	
-	var raw_diff: Vector2 = next_path_position - current_agent_position
-	var move_direction: Vector2 = Vector2.ZERO
-	
-	if abs(raw_diff.x) > abs(raw_diff.y):
-		move_direction.x = sign(raw_diff.x)
-	else:
-		move_direction.y = sign(raw_diff.y)
+func find_target() -> void:
+	set_target_position(player.global_position)
 
-	var distance: float = global_position.distance_to(nav_agent.target_position)
+func _physics_process(delta: float) -> void:
+	var last_position = global_position
+	find_target()
 	
+	if nav_agent.is_navigation_finished():
+		velocity = Vector2.ZERO
+		return
+		
+	var next_path_position: Vector2 = nav_agent.get_next_path_position()
+	var current_agent_position: Vector2 = global_position
+	var move_direction: Vector2 = (next_path_position - current_agent_position).normalized()
 	velocity = move_direction * speed
-	if distance > stats["sight distance"]:
-		if move_direction.x < 0:
-			if abs(move_direction.x) > 0:
-				anim.play("run")
-			elif abs(move_direction.y) > 0:
-				anim.play("run")
-			else:
-				anim.play("still")
-		
-		if direction == Vector2.LEFT:
-			anim.scale.x = -1
-		else:
-			anim.scale.x = 1
-		
-		move_and_slide()
+	move_and_slide()
+	
+	if velocity.x != 0:
+		anim.play("run")
+		anim.flip_h = (velocity.x < 0)
+	else:
+		anim.play("idle")
+	
+	if global_position == last_position:
+		anim.play("idle")
+	
