@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2v38yn4h14kh"]
 
 [ext_resource type="Texture2D" uid="uid://c02hyyhdqrds1" path="res://art/monster(1)/monster4.png" id="1_3r7jw"]
-[ext_resource type="Script" uid="uid://cpxta0hgdqmop" path="res://scenes/monster.gd" id="1_fttm7"]
+[ext_resource type="Script" uid="uid://cpxta0hgdqmop" path="res://scripts/monster.gd" id="1_fttm7"]
 [ext_resource type="Texture2D" uid="uid://cv62kr3exmhnw" path="res://art/monster(1)/monster0.png" id="1_mrqeg"]
 [ext_resource type="Texture2D" uid="uid://cl2834xsj8lfn" path="res://art/monster(1)/monster1.png" id="2_ga5te"]
 [ext_resource type="Texture2D" uid="uid://cqwsuhon23kg3" path="res://art/monster(1)/monster5.png" id="2_rux75"]
@@ -74,3 +74,5 @@ animation = &"idle"
 position = Vector2(-9.536743e-08, 9.536743e-08)
 scale = Vector2(0.005, 0.005)
 shape = SubResource("RectangleShape2D_onpc1")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=1336169283]
