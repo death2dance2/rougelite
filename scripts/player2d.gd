@@ -13,6 +13,7 @@ extends CharacterBody2D
 var target_position: Vector2 = Vector2.ZERO
 var is_moving: bool = false
 var can_move: bool = false
+var has_moved_last = false
 
 
 func _ready() -> void:
@@ -47,23 +48,23 @@ func _physics_process(delta: float) -> void:
 
 
 func move() -> void:
-	if can_move:	
+	if can_move:
 		var direction = get_input()
 		var anim_direction = direction
 		
 		# animate
-		if anim_direction == Vector2.ZERO:
+		if anim_direction == Vector2.LEFT:
+			anim.animation = "left"
+		elif anim_direction == Vector2.RIGHT:
+			anim.animation = "right"
+		
+		if is_moving == false:
 			if anim.animation == "left":
 				anim.animation = "idle_left"
 			else:
 				if !anim.animation == "idle_left":
 					anim.animation = "idle_right"
 					
-		if anim_direction == Vector2.LEFT:
-			anim.animation = "left"
-		elif anim_direction == Vector2.RIGHT:
-			anim.animation = "right"
-
 		if direction != Vector2.ZERO:
 			var current_grid_pos = map_layer.local_to_map(position)
 			var next_grid_pos = current_grid_pos + Vector2i(direction)
@@ -106,7 +107,6 @@ func get_input():
 		direction = Vector2.UP
 	
 	return direction
-	
 
 func cell_matches_id(grid_pos: Vector2i, layer_name: String, target_id: int) -> bool:
 	var tile_data: TileData = map_layer.get_cell_tile_data(grid_pos)

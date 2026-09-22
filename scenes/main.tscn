@@ -794,26 +794,18 @@ texture_region_size = Vector2i(10, 10)
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-2:3/0/terrains_peering_bit/bottom_left_corner = 0
 2:3/0/custom_data_0 = 1
 1:3/0 = 0
 1:3/0/terrain_set = 0
 1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-1:3/0/terrains_peering_bit/bottom_right_corner = 0
-1:3/0/terrains_peering_bit/bottom_side = 0
-1:3/0/terrains_peering_bit/bottom_left_corner = 0
 1:3/0/custom_data_0 = 1
 0:3/0 = 0
 0:3/0/terrain_set = 0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-0:3/0/terrains_peering_bit/bottom_right_corner = 0
 0:3/0/custom_data_0 = 1
 0:4/0 = 0
 0:4/0/terrain_set = 0
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-0:4/0/terrains_peering_bit/right_side = 0
-0:4/0/terrains_peering_bit/bottom_right_corner = 0
-0:4/0/terrains_peering_bit/top_right_corner = 0
 0:4/0/custom_data_0 = 1
 1:4/0 = 0
 1:4/0/terrain_set = 0
@@ -822,9 +814,6 @@ texture_region_size = Vector2i(10, 10)
 2:4/0 = 0
 2:4/0/terrain_set = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-2:4/0/terrains_peering_bit/bottom_left_corner = 0
-2:4/0/terrains_peering_bit/left_side = 0
-2:4/0/terrains_peering_bit/top_left_corner = 0
 2:4/0/custom_data_0 = 1
 3:4/0 = 0
 3:4/0/terrain_set = 0
@@ -885,19 +874,14 @@ texture_region_size = Vector2i(10, 10)
 2:5/0 = 0
 2:5/0/terrain_set = 0
 2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-2:5/0/terrains_peering_bit/top_left_corner = 0
 2:5/0/custom_data_0 = 1
 1:5/0 = 0
 1:5/0/terrain_set = 0
 1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-1:5/0/terrains_peering_bit/top_left_corner = 0
-1:5/0/terrains_peering_bit/top_side = 0
-1:5/0/terrains_peering_bit/top_right_corner = 0
 1:5/0/custom_data_0 = 1
 0:5/0 = 0
 0:5/0/terrain_set = 0
 0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
-0:5/0/terrains_peering_bit/top_right_corner = 0
 0:5/0/custom_data_0 = 1
 
 [sub_resource type="TileSet" id="TileSet_18hs7"]
@@ -979,7 +963,7 @@ z_index = -5
 texture_filter = 1
 position = Vector2(-4.7683716e-07, -4.7683716e-07)
 scale = Vector2(1.0000001, 1.0000001)
-tile_map_data = PackedByteArray("AAD//wMAAwAFAAIAAAAAAAMAAwAFAAIAAAABAAMAAwAFAAIAAAACAAMAAwAEAAMAAAADAAMAAwAEAAMAAAAEAAMAAwAEAAMAAAAFAAMAAwAFAAIAAAAGAAIAAwAFAAAAAAAGAAEAAwAGAAEAAAAGAAAAAwAGAAEAAAAGAP//AwAGAAEAAAAGAP7/AwAGAAEAAAAGAP3/AwAFAAAAAAAGAPz/AwAEAAQAAAAFAPz/AwADAAAAAAAEAPz/AwAEAAMAAAADAPz/AwAEAAMAAAACAPz/AwAEAAMAAAABAPz/AwADAAAAAAAAAPz/AwADAAAAAAD///z/AwADAAAAAAD+//z/AwADAAAAAAD8//z/AwAEAAMAAAD9//z/AwAEAAMAAAD7//z/AwAEAAMAAAD6//z/AwADAAAAAAD5//z/AwADAAQAAAD5//3/AwADAAIAAAD5//7/AwAGAAEAAAD7/wMAAwAEAAMAAAD8/wMAAwAEAAMAAAD9/wMAAwAEAAMAAAD+/wMAAwAFAAIAAAD6/wMAAwAFAAIAAAD5/wMAAwADAAUAAAD5/wIAAwADAAIAAAD5/wEAAwAGAAEAAAD5/wAAAwAGAAEAAAD5////AwAGAAEAAAAGAAMAAwAEAAUAAAAFAAIAAwADAAQAAAAFAP3/AwADAAUAAAAAAAIAAwADAAAAAAD//wIAAwADAAAAAAABAAIAAwAEAAQAAAD+/wIAAwADAAQAAAD+//3/AwADAAUAAAD///3/AwAFAAIAAAAAAP3/AwAFAAIAAAABAP3/AwAEAAUAAAD6//3/AwAEAAUAAAD6/wIAAwAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAD9//z/AwAEAAMAAAD+//z/AwAEAAMAAAD///z/AwADAAAAAAAAAPz/AwADAAAAAAABAPz/AwAEAAMAAAACAPz/AwAEAAMAAAADAPz/AwADAAAAAAAEAPz/AwAEAAQAAAD7//z/AwADAAQAAAD7//3/AwADAAIAAAD7//7/AwAGAAEAAAD7////AwAGAAEAAAD7/wAAAwAGAAEAAAD7/wEAAwAGAAEAAAD7/wIAAwADAAIAAAD7/wMAAwADAAUAAAD8/wMAAwAFAAIAAAD9/wMAAwAEAAMAAAD+/wMAAwAEAAMAAAD//wMAAwAFAAIAAAAAAAMAAwAFAAIAAAABAAMAAwAEAAMAAAACAAMAAwAEAAMAAAADAAMAAwAFAAIAAAAEAAEAAwAGAAEAAAAEAAAAAwAGAAEAAAAEAP//AwAGAAEAAAAEAP7/AwAGAAEAAAAEAP3/AwAFAAAAAAAEAAMAAwAEAAUAAAAEAAIAAwAFAAAAAAADAAIAAwADAAQAAAD8/wIAAwAEAAQAAAADAP3/AwADAAUAAAD8//3/AwAEAAUAAAD8//z/AwADAAAAAAAAAAIAAwAEAAQAAAD//wIAAwADAAQAAAD///3/AwADAAUAAAAAAP3/AwAEAAUAAAA=")
 tile_set = SubResource("TileSet_18hs7")
 
 [node name="Tile_Map_cover" type="TileMapLayer" parent="." unique_id=1450355750]

@@ -15,6 +15,15 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ur7pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d2wvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3v2ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jej6c")
 }],
 "loop": 1,
 "name": &"idle_left",
@@ -23,6 +32,15 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_y4r1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f1ej7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_oprun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a8ls1")
 }],
 "loop": 1,
 "name": &"idle_right",
@@ -70,4 +88,4 @@ script = ExtResource("1_ur7pv")
 texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_onpc1")
-animation = &"right"
+animation = &"idle_right"
