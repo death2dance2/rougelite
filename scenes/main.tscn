@@ -746,7 +746,6 @@ texture_region_size = Vector2i(10, 10)
 5:1/0/custom_data_0 = 1
 7:2/0 = 0
 7:2/0/terrain_set = 0
-7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
 7:2/0/custom_data_0 = 1
 6:2/0 = 0
 6:2/0/terrain_set = 0
@@ -765,7 +764,6 @@ texture_region_size = Vector2i(10, 10)
 0:2/0/custom_data_0 = 1
 7:3/0 = 0
 7:3/0/terrain_set = 0
-7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
 7:3/0/custom_data_0 = 1
 6:3/0 = 0
 6:3/0/terrain_set = 0
@@ -841,11 +839,9 @@ texture_region_size = Vector2i(10, 10)
 6:4/0/custom_data_0 = 1
 7:4/0 = 0
 7:4/0/terrain_set = 0
-7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
 7:4/0/custom_data_0 = 1
 7:5/0 = 0
 7:5/0/terrain_set = 0
-7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, 5, -5, 5, -5, -5, 5, -5)
 7:5/0/custom_data_0 = 2
 6:5/0 = 0
 6:5/0/terrain_set = 0
@@ -954,7 +950,7 @@ sprite_frames = SubResource("SpriteFrames_onpc1")
 
 [node name="player" parent="." unique_id=736314522 instance=ExtResource("1_o5qli")]
 position = Vector2(5, 5)
-scale = Vector2(33.300003, 33.300003)
+scale = Vector2(33.3, 33.3)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=567643063]
 z_index = -5
@@ -980,12 +976,8 @@ sprite_frames = SubResource("SpriteFrames_sugp2")
 animation = &"opening"
 script = ExtResource("9_85g3d")
 
-[node name="monster" parent="." unique_id=969708228 node_paths=PackedStringArray("tile_map", "player_node", "line") instance=ExtResource("156_2tiby")]
+[node name="monster" parent="." unique_id=969708228 instance=ExtResource("156_2tiby")]
 position = Vector2(-4, 4.9999995)
-scale = Vector2(33.3, 33.3)
-tile_map = NodePath("../TileMapLayer")
-player_node = NodePath("../player")
-line = NodePath("../Line2D")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=413058892]
 default_color = Color(1, 1, 1, 0)
