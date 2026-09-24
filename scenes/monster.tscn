@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://b2v38yn4h14kh"]
 
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://cv62kr3exmhnw" path="res://art/monster(1)/monster0.png" id="2_fttm7"]
 [ext_resource type="Texture2D" uid="uid://cl2834xsj8lfn" path="res://art/monster(1)/monster1.png" id="3_akk5r"]
 [ext_resource type="Texture2D" uid="uid://i7vy1mu7vsml" path="res://art/monster(1)/monster2.png" id="4_x2c6u"]
@@ -9,17 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cqwsuhon23kg3" path="res://art/monster(1)/monster5.png" id="7_n78d1"]
 [ext_resource type="Texture2D" uid="uid://br1yqw5humlnp" path="res://art/monster(1)/monster6.png" id="8_7han3"]
 [ext_resource type="Texture2D" uid="uid://b3tewq5qu6ttj" path="res://art/monster(1)/monster7.png" id="9_70tfl"]
-=======
-[ext_resource type="Texture2D" uid="uid://c02hyyhdqrds1" path="res://art/monster(1)/monster4.png" id="1_3r7jw"]
-[ext_resource type="Script" uid="uid://cpxta0hgdqmop" path="res://scripts/monster.gd" id="1_fttm7"]
-[ext_resource type="Texture2D" uid="uid://cv62kr3exmhnw" path="res://art/monster(1)/monster0.png" id="1_mrqeg"]
-[ext_resource type="Texture2D" uid="uid://cl2834xsj8lfn" path="res://art/monster(1)/monster1.png" id="2_ga5te"]
-[ext_resource type="Texture2D" uid="uid://cqwsuhon23kg3" path="res://art/monster(1)/monster5.png" id="2_rux75"]
-[ext_resource type="Texture2D" uid="uid://br1yqw5humlnp" path="res://art/monster(1)/monster6.png" id="3_481d3"]
-[ext_resource type="Texture2D" uid="uid://b3tewq5qu6ttj" path="res://art/monster(1)/monster7.png" id="4_iyrhi"]
-[ext_resource type="Texture2D" uid="uid://i7vy1mu7vsml" path="res://art/monster(1)/monster2.png" id="7_o46hk"]
-[ext_resource type="Texture2D" uid="uid://byuf3w77sp5b6" path="res://art/monster(1)/monster3.png" id="8_s53e4"]
->>>>>>> 755be1894feb97ca89ab99cbda0ac19259be71f3
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8vd5c"]
 animations = [{
@@ -45,7 +33,6 @@ animations = [{
 "texture": ExtResource("2_fttm7")
 }, {
 "duration": 1.0,
-<<<<<<< HEAD
 "texture": ExtResource("3_akk5r")
 }, {
 "duration": 1.0,
@@ -69,22 +56,6 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 7.0
-=======
-"texture": ExtResource("2_ga5te")
-}, {
-"duration": 2.0,
-"texture": ExtResource("2_rux75")
-}, {
-"duration": 2.0,
-"texture": ExtResource("3_481d3")
-}, {
-"duration": 2.0,
-"texture": ExtResource("4_iyrhi")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 5.0
->>>>>>> 755be1894feb97ca89ab99cbda0ac19259be71f3
 }, {
 "frames": [{
 "duration": 1.0,
@@ -108,7 +79,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-<<<<<<< HEAD
 "texture": ExtResource("2_fttm7")
 }, {
 "duration": 1.0,
@@ -127,26 +97,11 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fttm7"]
 size = Vector2(2.7282991, 3.2187512)
-=======
-"texture": ExtResource("1_mrqeg")
-}],
-"loop": 1,
-"name": &"still",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onpc1"]
-
-[node name="monster" type="CharacterBody2D" unique_id=969708228]
-scale = Vector2(30, 30)
-script = ExtResource("1_fttm7")
->>>>>>> 755be1894feb97ca89ab99cbda0ac19259be71f3
 
 [node name="monster" type="CharacterBody2D" unique_id=736314522 groups=["enemy"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1770171882]
 texture_filter = 1
-<<<<<<< HEAD
 sprite_frames = SubResource("SpriteFrames_8vd5c")
 animation = &"attack"
 frame = 3
@@ -155,15 +110,3 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=870085592]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_fttm7")
-=======
-scale = Vector2(0.03, 0.03)
-sprite_frames = SubResource("SpriteFrames_c5q2p")
-animation = &"still"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1962109331]
-position = Vector2(-9.536743e-08, 9.536743e-08)
-scale = Vector2(1e-05, 1e-05)
-shape = SubResource("RectangleShape2D_onpc1")
-
-[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=1336169283]
->>>>>>> 755be1894feb97ca89ab99cbda0ac19259be71f3
