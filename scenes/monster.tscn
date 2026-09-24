@@ -98,7 +98,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fttm7"]
 size = Vector2(2.7282991, 3.2187512)
 
-[node name="monster" type="CharacterBody2D" unique_id=736314522]
+[node name="monster" type="CharacterBody2D" unique_id=736314522 groups=["enemy"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1770171882]
 texture_filter = 1
