@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://ho2ehhbuab2e" path="res://scripts/player2d.gd" id="1_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://u5loaph3tw5x" path="res://art/player/player_sprite4.png" id="2_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://tnfnqa8f6mql" path="res://art/player/player_sprite0.png" id="3_y4r1p"]
-[ext_resource type="Texture2D" uid="uid://vnh31fyrwo2l" path="res://art/player/player_sprite5.png" id="4_d2wvv"]
-[ext_resource type="Texture2D" uid="uid://dy5bo1y8fhcpr" path="res://art/player/player_sprite6.png" id="5_3v2ag"]
-[ext_resource type="Texture2D" uid="uid://dw54eow1w0bj2" path="res://art/player/player_sprite7.png" id="6_jej6c"]
-[ext_resource type="Texture2D" uid="uid://byt1qj4x3ntga" path="res://art/player/player_sprite1.png" id="7_f1ej7"]
-[ext_resource type="Texture2D" uid="uid://cx3j1jguvp3o" path="res://art/player/player_sprite2.png" id="8_oprun"]
-[ext_resource type="Texture2D" uid="uid://j8ugbggmst8m" path="res://art/player/player_sprite3.png" id="9_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://c02hyyhdqrds1" path="res://art/monster(1)/monster4.png" id="2_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://cqwsuhon23kg3" path="res://art/monster(1)/monster5.png" id="3_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://br1yqw5humlnp" path="res://art/monster(1)/monster6.png" id="4_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://b3tewq5qu6ttj" path="res://art/monster(1)/monster7.png" id="5_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://cv62kr3exmhnw" path="res://art/monster(1)/monster0.png" id="6_jej6c"]
+[ext_resource type="Texture2D" uid="uid://cl2834xsj8lfn" path="res://art/monster(1)/monster1.png" id="7_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://i7vy1mu7vsml" path="res://art/monster(1)/monster2.png" id="8_oprun"]
+[ext_resource type="Texture2D" uid="uid://byuf3w77sp5b6" path="res://art/monster(1)/monster3.png" id="9_a8ls1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onpc1"]
 animations = [{
@@ -17,21 +17,29 @@ animations = [{
 "texture": ExtResource("2_ur7pv")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_y4r1p")
+}, {
+"duration": 1.0,
 "texture": ExtResource("4_d2wvv")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_3v2ag")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_jej6c")
 }],
 "loop": 1,
-"name": &"idle_left",
+"name": &"attack",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_y4r1p")
+"texture": ExtResource("6_jej6c")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_jej6c")
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_f1ej7")
@@ -43,41 +51,7 @@ animations = [{
 "texture": ExtResource("9_a8ls1")
 }],
 "loop": 1,
-"name": &"idle_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_ur7pv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_d2wvv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_3v2ag")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_jej6c")
-}],
-"loop": 1,
-"name": &"left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_y4r1p")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_f1ej7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_oprun")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_a8ls1")
-}],
-"loop": 1,
-"name": &"right",
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -92,7 +66,7 @@ script = ExtResource("1_ur7pv")
 texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_onpc1")
-animation = &"idle_right"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1072121500]
 position = Vector2(0.008115102, 0.013583852)
@@ -101,6 +75,6 @@ shape = SubResource("RectangleShape2D_onpc1")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=791536508]
 scale = Vector2(0.1, 0.1)
-target_position = Vector2(0, 5)
+target_position = Vector2(0, 4)
 collision_mask = 65535
 collide_with_areas = true
