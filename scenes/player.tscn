@@ -9,6 +9,69 @@
 [ext_resource type="Texture2D" uid="uid://cl2834xsj8lfn" path="res://art/monster(1)/monster1.png" id="7_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://i7vy1mu7vsml" path="res://art/monster(1)/monster2.png" id="8_oprun"]
 [ext_resource type="Texture2D" uid="uid://byuf3w77sp5b6" path="res://art/monster(1)/monster3.png" id="9_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://cc531yofjbds2" path="res://art/sword_slash/sword_slash10.png" id="10_60mlk"]
+[ext_resource type="Texture2D" uid="uid://dx4gn06fsdtr" path="res://art/sword_slash/sword_slash00.png" id="11_i4ail"]
+[ext_resource type="Texture2D" uid="uid://ddc8151d4skl7" path="res://art/sword_slash/sword_slash01.png" id="12_a38lo"]
+[ext_resource type="Texture2D" uid="uid://ccow8u0astjk" path="res://art/sword_slash/sword_slash02.png" id="13_4ni07"]
+[ext_resource type="Texture2D" uid="uid://dtdxkjoojlu5w" path="res://art/sword_slash/sword_slash03.png" id="14_l71n6"]
+[ext_resource type="Texture2D" uid="uid://c5u5tdhnjvcub" path="res://art/sword_slash/sword_slash04.png" id="15_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://y4hhjoa4lrin" path="res://art/sword_slash/sword_slash05.png" id="16_ujl30"]
+[ext_resource type="Texture2D" uid="uid://c0h6pvt4wayi4" path="res://art/sword_slash/sword_slash06.png" id="17_31cv2"]
+[ext_resource type="Texture2D" uid="uid://coxlsl283hbp6" path="res://art/sword_slash/sword_slash07.png" id="18_pf23h"]
+[ext_resource type="Texture2D" uid="uid://d0drgtdqk80vc" path="res://art/sword_slash/sword_slash08.png" id="19_dt7fs"]
+[ext_resource type="Texture2D" uid="uid://81ch04busnne" path="res://art/sword_slash/sword_slash09.png" id="20_wqfne"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vd5c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_60mlk")
+}],
+"loop": 1,
+"name": &"nothing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_60mlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_i4ail")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_a38lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_l71n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ke2ow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ujl30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_31cv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_pf23h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_dt7fs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_wqfne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_60mlk")
+}],
+"loop": 0,
+"name": &"slash",
+"speed": 50.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onpc1"]
 animations = [{
@@ -61,6 +124,15 @@ size = Vector2(2.7282991, 3.2187512)
 [node name="player" type="CharacterBody2D" unique_id=736314522]
 scale = Vector2(10, 10)
 script = ExtResource("1_ur7pv")
+
+[node name="sword_anim" type="AnimatedSprite2D" parent="." unique_id=981649047]
+z_index = 5
+texture_filter = 1
+scale = Vector2(0.029999996, 0.029999996)
+sprite_frames = SubResource("SpriteFrames_8vd5c")
+animation = &"slash"
+frame = 11
+frame_progress = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1711025057]
 texture_filter = 1

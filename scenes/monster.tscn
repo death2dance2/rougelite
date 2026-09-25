@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://br1yqw5humlnp" path="res://art/monster(1)/monster6.png" id="8_7han3"]
 [ext_resource type="Texture2D" uid="uid://b3tewq5qu6ttj" path="res://art/monster(1)/monster7.png" id="9_70tfl"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8vd5c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_yce20"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -24,38 +24,17 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_70tfl")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"attack",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_fttm7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_akk5r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_x2c6u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ei7v0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_1v1i4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_n78d1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_7han3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_70tfl")
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 7.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -69,29 +48,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_ei7v0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_1v1i4")
 }],
 "loop": 1,
 "name": &"run",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_fttm7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_akk5r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_x2c6u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ei7v0")
-}],
-"loop": 1,
-"name": &"walk",
 "speed": 5.0
 }]
 
@@ -100,13 +59,19 @@ size = Vector2(2.7282991, 3.2187512)
 
 [node name="monster" type="CharacterBody2D" unique_id=736314522 groups=["enemy"]]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1770171882]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=846412820]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_8vd5c")
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_yce20")
 animation = &"attack"
-frame = 3
-frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=870085592]
-scale = Vector2(3, 3)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=139651417]
+position = Vector2(0.008115102, 0.013583852)
+scale = Vector2(0.089999996, 0.089999996)
 shape = SubResource("RectangleShape2D_fttm7")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2056540224]
+scale = Vector2(0.1, 0.1)
+target_position = Vector2(0, 4)
+collision_mask = 65535
+collide_with_areas = true

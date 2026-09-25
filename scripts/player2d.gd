@@ -6,9 +6,12 @@ var direction = Vector2.ZERO
 var speed = 30.0
 var attack_power = 1
 var anim_direction = Vector2.RIGHT
+var sword_anim_direction = Vector2.ZERO
+var sword_swing = false
 
 @onready var anim = $AnimatedSprite2D
 @onready var raycast = $RayCast2D
+@onready var sword_anim = $sword_anim
 
 func _ready() -> void:
 	global_position = Vector2(5, 5)
@@ -43,6 +46,9 @@ func _physics_process(delta: float) -> void:
 
 	if direction != Vector2.ZERO:
 		global_position += direction * tile_size
+		if Input.is_action_just_pressed("attack"):
+			sword_swing = true
+			animate_sword()
 
 func get_input():
 	if Input.is_action_just_pressed("move_right"):
@@ -87,3 +93,13 @@ func apply_damage(target: CharacterBody2D, damage: int):
 		target.die()
 	else:
 		target.queue_free()
+		
+func animate_sword():
+	if sword_anim.direction == Vector2.ZERO:
+		sword_anim.animation = "nothing"
+	else:
+		if sword_swing == true:
+			sword_swing = false
+			sword_anim.global_position = global_position + sword_anim_direction + tile_size
+			sword_swing.look_at(global_position + sword_anim_direction + tile_size)
+			sword_anim.play("slash")
