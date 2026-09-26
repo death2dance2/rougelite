@@ -17,7 +17,9 @@ func _ready() -> void:
 	global_position = Vector2(5, 5)
 
 func _physics_process(delta: float) -> void:
-	direction = get_input()
+	direction = get_move_input()
+	
+	sword_anim_direction = get_attack_input()
 	
 	play_anim()
 	
@@ -46,11 +48,12 @@ func _physics_process(delta: float) -> void:
 
 	if direction != Vector2.ZERO:
 		global_position += direction * tile_size
-		if Input.is_action_just_pressed("attack"):
+	
+	if sword_anim_direction != Vector2.ZERO:
 			sword_swing = true
 			animate_sword()
 
-func get_input():
+func get_move_input():
 	if Input.is_action_just_pressed("move_right"):
 		return Vector2.RIGHT
 		
@@ -64,6 +67,22 @@ func get_input():
 		return Vector2.UP
 		
 	return Vector2.ZERO
+	
+func get_attack_input():
+	if Input.is_action_just_pressed("ui_up"):
+		return Vector2.UP
+	
+	elif Input.is_action_just_pressed("ui_down"):
+		return Vector2.DOWN
+	
+	elif Input.is_action_just_pressed("ui_left"):
+		return Vector2.LEFT
+	
+	elif Input.is_action_just_pressed("ui_right"):
+		return Vector2.RIGHT
+	
+	else:
+		return Vector2.ZERO
 
 func play_anim():
 		
@@ -95,11 +114,10 @@ func apply_damage(target: CharacterBody2D, damage: int):
 		target.queue_free()
 		
 func animate_sword():
-	if sword_anim.direction == Vector2.ZERO:
-		sword_anim.animation = "nothing"
-	else:
-		if sword_swing == true:
-			sword_swing = false
-			sword_anim.global_position = global_position + sword_anim_direction + tile_size
-			sword_swing.look_at(global_position + sword_anim_direction + tile_size)
-			sword_anim.play("slash")
+	if sword_swing == true:
+		sword_swing = false
+		sword_anim.global_position = global_position + (sword_anim_direction * tile_size)
+		sword_anim.look_at(global_position + (sword_anim_direction * tile_size))
+		print("sword attack!")
+		sword_anim.play("slash")
+		sword_anim_direction = Vector2.ZERO
