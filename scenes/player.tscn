@@ -70,8 +70,11 @@ animations = [{
 }],
 "loop": 0,
 "name": &"slash",
-"speed": 50.0
+"speed": 44.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfer4"]
+size = Vector2(5, 5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onpc1"]
 animations = [{
@@ -88,9 +91,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_3v2ag")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack",
-"speed": 5.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -126,19 +129,21 @@ scale = Vector2(10, 10)
 script = ExtResource("1_ur7pv")
 
 [node name="sword_anim" type="AnimatedSprite2D" parent="." unique_id=981649047]
-z_index = 5
+z_index = 4
 texture_filter = 1
 scale = Vector2(0.029999996, 0.029999996)
 sprite_frames = SubResource("SpriteFrames_8vd5c")
 animation = &"slash"
-frame = 11
-frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sword_anim" unique_id=541454653]
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_xfer4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1711025057]
 texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_onpc1")
-animation = &"idle"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1072121500]
 position = Vector2(0.008115102, 0.013583852)

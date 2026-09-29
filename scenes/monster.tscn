@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b2v38yn4h14kh"]
 
+[ext_resource type="Script" uid="uid://cpxta0hgdqmop" path="res://scripts/monster.gd" id="1_fttm7"]
 [ext_resource type="Texture2D" uid="uid://cv62kr3exmhnw" path="res://art/monster(1)/monster0.png" id="2_fttm7"]
 [ext_resource type="Texture2D" uid="uid://cl2834xsj8lfn" path="res://art/monster(1)/monster1.png" id="3_akk5r"]
 [ext_resource type="Texture2D" uid="uid://i7vy1mu7vsml" path="res://art/monster(1)/monster2.png" id="4_x2c6u"]
@@ -31,14 +32,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_fttm7")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_fttm7")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_akk5r")
@@ -50,24 +43,38 @@ animations = [{
 "texture": ExtResource("5_ei7v0")
 }],
 "loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fttm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_akk5r")
+}],
+"loop": 1,
 "name": &"run",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fttm7"]
-size = Vector2(2.7282991, 3.2187512)
+size = Vector2(2.274983, 2.459445)
 
 [node name="monster" type="CharacterBody2D" unique_id=736314522 groups=["enemy"]]
+scale = Vector2(33.3, 33.3)
+script = ExtResource("1_fttm7")
+action_queue = Array[String](["move", "attack", "skip"])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=846412820]
 texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_yce20")
-animation = &"attack"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=139651417]
-position = Vector2(0.008115102, 0.013583852)
-scale = Vector2(0.089999996, 0.089999996)
+position = Vector2(9.313226e-10, 3.7252903e-09)
+scale = Vector2(0.09, 0.09)
 shape = SubResource("RectangleShape2D_fttm7")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=2056540224]

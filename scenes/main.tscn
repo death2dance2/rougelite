@@ -154,7 +154,9 @@
 [ext_resource type="Texture2D" uid="uid://c5dm7l4hwcjfc" path="res://scripts/Fade_Out/fade_out142.png" id="145_02vol"]
 [ext_resource type="Texture2D" uid="uid://3ug6o8cvwqmu" path="res://scripts/Fade_Out/fade_out143.png" id="146_1xs8q"]
 [ext_resource type="Texture2D" uid="uid://b25hfucetq8vl" path="res://scripts/Fade_Out/fade_out144.png" id="147_o8r5q"]
+[ext_resource type="Script" uid="uid://do64i7nnci55d" path="res://scenes/tile_map_layer.gd" id="150_2tiby"]
 [ext_resource type="Texture2D" uid="uid://ds2twe1b64mr1" path="res://ladder/ladder4.png" id="151_2tiby"]
+[ext_resource type="PackedScene" uid="uid://b2v38yn4h14kh" path="res://scenes/monster.tscn" id="157_1m7le"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onpc1"]
 animations = [{
@@ -887,6 +889,8 @@ terrain_set_0/terrain_0/name = "wall"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "block_type"
 custom_data_layer_0/type = 2
+custom_data_layer_1/name = "weight"
+custom_data_layer_1/type = 2
 sources/3 = SubResource("TileSetAtlasSource_tbgi4")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sugp2"]
@@ -952,12 +956,14 @@ position = Vector2(5, 5)
 scale = Vector2(33.3, 33.3)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=567643063]
+visibility_layer = 3
 z_index = -5
 texture_filter = 1
 position = Vector2(-4.7683716e-07, -4.7683716e-07)
 scale = Vector2(1.0000001, 1.0000001)
-tile_map_data = PackedByteArray("AAD9//z/AwAEAAMAAAD+//z/AwAEAAMAAAD///z/AwADAAAAAAAAAPz/AwADAAAAAAABAPz/AwAEAAMAAAACAPz/AwAEAAMAAAADAPz/AwADAAAAAAAEAPz/AwAEAAQAAAD7//z/AwADAAQAAAD7//3/AwADAAIAAAD7//7/AwAGAAEAAAD7////AwAGAAEAAAD7/wAAAwAGAAEAAAD7/wEAAwAGAAEAAAD7/wIAAwADAAIAAAD7/wMAAwADAAUAAAD8/wMAAwAFAAIAAAD9/wMAAwAEAAMAAAD+/wMAAwAEAAMAAAD//wMAAwAFAAIAAAAAAAMAAwAFAAIAAAABAAMAAwAEAAMAAAACAAMAAwAEAAMAAAADAAMAAwAFAAIAAAAEAAEAAwAGAAEAAAAEAAAAAwAGAAEAAAAEAP//AwAGAAEAAAAEAP7/AwAGAAEAAAAEAP3/AwAFAAAAAAAEAAMAAwAEAAUAAAAEAAIAAwAFAAAAAAADAAIAAwADAAQAAAD8/wIAAwAEAAQAAAADAP3/AwADAAUAAAD8//3/AwAEAAUAAAD8//z/AwADAAAAAAAAAAIAAwAEAAQAAAD//wIAAwADAAQAAAD///3/AwADAAUAAAAAAP3/AwAEAAUAAAABAAAAAwABAAEAAAABAP//AwABAAEAAAABAP7/AwABAAEAAAABAP3/AwABAAEAAAACAP3/AwABAAEAAAACAP7/AwABAAEAAAACAP//AwABAAEAAAACAAAAAwABAAEAAAACAAEAAwABAAEAAAABAAEAAwABAAEAAAAAAAEAAwABAAEAAAAAAAAAAwABAAEAAAAAAP//AwABAAEAAAAAAP7/AwABAAEAAAD///7/AwABAAEAAAD+//7/AwABAAEAAAD+//3/AwABAAEAAAD9//3/AwABAAEAAAD9//7/AwABAAEAAAD8//7/AwABAAEAAAD8////AwABAAEAAAD8/wAAAwABAAEAAAD8/wEAAwABAAEAAAD9/wEAAwABAAEAAAD9/wAAAwABAAEAAAD9////AwABAAEAAAD+////AwABAAEAAAD+/wAAAwABAAEAAAD+/wEAAwABAAEAAAD+/wIAAwABAAEAAAD9/wIAAwABAAEAAAD//wEAAwABAAEAAAD//wAAAwABAAEAAAD/////AwABAAEAAAABAAIAAwABAAEAAAACAAIAAwABAAEAAAADAAEAAwABAAEAAAADAAAAAwABAAEAAAADAP//AwABAAEAAAADAP7/AwABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD9//z/AwAEAAMAAAD+//z/AwAEAAMAAAD///z/AwADAAAAAAAAAPz/AwADAAAAAAABAPz/AwAEAAMAAAACAPz/AwAEAAMAAAADAPz/AwADAAAAAAAEAPz/AwAEAAQAAAD7//z/AwADAAQAAAD7//3/AwADAAIAAAD7//7/AwAGAAEAAAD7////AwAGAAEAAAD7/wAAAwAGAAEAAAD7/wEAAwAGAAEAAAD7/wIAAwADAAIAAAD7/wMAAwADAAUAAAD8/wMAAwAFAAIAAAD9/wMAAwAEAAMAAAD+/wMAAwAEAAMAAAD//wMAAwAFAAIAAAAAAAMAAwAFAAIAAAABAAMAAwAEAAMAAAACAAMAAwAEAAMAAAADAAMAAwAFAAIAAAAEAAEAAwAGAAEAAAAEAAAAAwAGAAEAAAAEAP//AwAGAAEAAAAEAP7/AwAGAAEAAAAEAP3/AwAFAAAAAAAEAAMAAwAEAAUAAAAEAAIAAwAFAAAAAAADAAIAAwADAAQAAAD8/wIAAwAEAAQAAAADAP3/AwADAAUAAAD8//3/AwAEAAUAAAD8//z/AwADAAAAAAAAAAIAAwAEAAQAAAD//wIAAwADAAQAAAD///3/AwADAAUAAAAAAP3/AwAEAAUAAAA=")
 tile_set = SubResource("TileSet_18hs7")
+script = ExtResource("150_2tiby")
 
 [node name="Tile_Map_cover" type="TileMapLayer" parent="." unique_id=1450355750]
 z_index = -4
@@ -977,3 +983,8 @@ script = ExtResource("9_85g3d")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=413058892]
 default_color = Color(1, 1, 1, 0)
+
+[node name="monster" parent="." unique_id=1885686573 instance=ExtResource("157_1m7le")]
+position = Vector2(-4.9999995, 5.0000005)
+speed = 30.0
+actions_per_second = 2.0
