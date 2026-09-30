@@ -5,9 +5,10 @@ extends CharacterBody2D
 @export var actions_per_second: float = 2.5
 var current_action_index: int = 0
 
+@onready var anim = $AnimatedSprite2D
 @onready var map_layer = $"../TileMapLayer"
 @onready var player = $"../player"
-@onready var raycast = $RayCast2D
+@onready var raycast = $monster_raycast_2d
 
 var current_path: PackedVector2Array = []
 var path_index: int = 0
@@ -35,29 +36,25 @@ func _physics_process(_delta):
 	var target = global_position + (move_direction * move_distance)
 
 	
-	raycast.target_position = move_distance * player.tile_size * 0.3
-	raycast.force_raycast_update()
-	
-	if raycast.is_colliding():
-		var collider = raycast.get_collider()
-		
-		if collider != null and collider.has_method("get_cell_tile_data"):
-			var hit_point = raycast.get_collision_point()
-			move_direction = global_position.direction_to(target_position)
-			var map_position = collider.local_to_map(hit_point + move_direction * 2)
-
-			var tile_data = collider.get_cell_tile_data(map_position)
+	if global_position.distance_to(player.global_position) < (player.tile_size + (player.tile_size / 10)):
+		path_index += 1
+		return
 	
 	if move_distance >= distance_to_target:
 		global_position = target_position
 		velocity = Vector2.ZERO
 		path_index += 1
 	else:
-		velocity = global_position.direction_to(target_position) * speed
+		global_position = global_position + (global_position.direction_to(target_position) * player.tile_size)
 		move_and_slide()
 
 
 func execute_next_action():
+	if player.global_position.x < global_position.x:
+		anim.flip_h = true
+	elif player.global_position.x > global_position.x:
+		anim.flip_h = false
+	
 	if action_queue.is_empty():
 		return
 		
@@ -72,7 +69,7 @@ func execute_next_action():
 			perform_attack_action()
 		"skip":
 			perform_skip_action()
-			
+
 func finish_current_action():
 	velocity = Vector2.ZERO
 	is_processing_action = false
@@ -99,7 +96,7 @@ func calculate_path_to_next_tile():
 		finish_current_action()
 
 func perform_attack_action():
-	if global_position.distance_to(player.global_position) < 25.0:
+	if global_position.distance_to(player.global_position) < (player.tile_size + (player.tile_size / 10)):
 		print("💥 AI attacked the player!")
 	else:
 		print("❌ AI swung but the player was too far away.")

@@ -77,7 +77,7 @@ position = Vector2(9.313226e-10, 3.7252903e-09)
 scale = Vector2(0.09, 0.09)
 shape = SubResource("RectangleShape2D_fttm7")
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2056540224]
+[node name="monster_raycast_2d" type="RayCast2D" parent="." unique_id=2056540224]
 scale = Vector2(0.1, 0.1)
 target_position = Vector2(0, 4)
 collision_mask = 65535
