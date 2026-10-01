@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var speed: float = 150.0
 @export var action_queue: Array[String] = ["move", "move", "attack", "skip"]
-@export var actions_per_second: float = 2.5
 var current_action_index: int = 0
 
 @onready var anim = $AnimatedSprite2D
@@ -13,8 +12,10 @@ var current_action_index: int = 0
 var current_path: PackedVector2Array = []
 var path_index: int = 0
 var is_processing_action: bool = false
+var actions_per_second = 0
 
 func _ready():
+	actions_per_second = player.actions_per_second
 	execute_next_action()
 
 func _physics_process(_delta):
@@ -97,12 +98,12 @@ func calculate_path_to_next_tile():
 
 func perform_attack_action():
 	if global_position.distance_to(player.global_position) < (player.tile_size + (player.tile_size / 10)):
-		print("💥 AI attacked the player!")
+		print("AI attacked the player!")
 	else:
-		print("❌ AI swung but the player was too far away.")
+		print("AI swung but the player was too far away.")
 		
 	finish_current_action()
 
 func perform_skip_action():
-	print("💤 AI skipped its turn.")
+	print("AI skipped its turn.")
 	finish_current_action()

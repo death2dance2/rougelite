@@ -10,16 +10,22 @@ var sword_anim_direction = Vector2.ZERO
 var sword_swing = false
 var is_attacking = false
 var move = false
+var is_busy = false
 
 @onready var anim = $AnimatedSprite2D
 @onready var raycast = $RayCast2D
 @onready var sword_anim = $sword_anim
 @onready var sword_collision = $sword_anim/CollisionShape2D
 
+@export var actions_per_second: float = 2.5
+
 func _ready() -> void:
 	global_position = Vector2(5, 5)
 
 func _physics_process(delta: float) -> void:
+	if is_busy:
+		return
+		
 	if is_attacking == false:
 		direction = get_move_input()
 		
@@ -53,11 +59,14 @@ func _physics_process(delta: float) -> void:
 
 		if direction != Vector2.ZERO && move == false:
 			global_position += direction * tile_size
+			finish_current_action()
 			move = true
 		
 		if sword_anim_direction != Vector2.ZERO:
 				sword_swing = true
 				animate_sword()
+				finish_current_action()
+				
 
 func get_move_input():
 	if Input.is_action_just_pressed("move_right"):
@@ -156,3 +165,9 @@ func animate_sword():
 		sword_anim.animation = "nothing"
 		is_attacking = false
 		anim.animation = "idle"
+
+func finish_current_action():
+	is_busy = true
+	var action_delay = 1.0 / actions_per_second
+	await get_tree().create_timer(action_delay).timeout
+	is_busy = false
