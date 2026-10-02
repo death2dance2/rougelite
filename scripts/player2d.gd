@@ -11,6 +11,7 @@ var sword_swing = false
 var is_attacking = false
 var move = false
 var is_busy = false
+var health = 5
 
 @onready var anim = $AnimatedSprite2D
 @onready var raycast = $RayCast2D
@@ -18,8 +19,10 @@ var is_busy = false
 @onready var sword_collision = $sword_anim/CollisionShape2D
 
 @export var actions_per_second: float = 2.5
+@export var max_health: int = 5
 
 func _ready() -> void:
+	health = max_health
 	global_position = Vector2(5, 5)
 
 func _physics_process(delta: float) -> void:
@@ -69,32 +72,32 @@ func _physics_process(delta: float) -> void:
 				
 
 func get_move_input():
-	if Input.is_action_just_pressed("move_right"):
+	if Input.is_action_pressed("move_right"):
 		return Vector2.RIGHT
 		
-	elif Input.is_action_just_pressed("move_left"):
+	elif Input.is_action_pressed("move_left"):
 		return Vector2.LEFT
 		
-	elif Input.is_action_just_pressed("move_down"):
+	elif Input.is_action_pressed("move_down"):
 		return Vector2.DOWN
 		
-	elif Input.is_action_just_pressed("move_up"):
+	elif Input.is_action_pressed("move_up"):
 		return Vector2.UP
 		
 	return Vector2.ZERO
 	
 func get_attack_input():
-	if Input.is_action_just_pressed("attack_up"):
+	if Input.is_action_pressed("attack_up"):
 		return Vector2.UP
 	
-	elif Input.is_action_just_pressed("attack_down"):
+	elif Input.is_action_pressed("attack_down"):
 		return Vector2.DOWN
 	
-	elif Input.is_action_just_pressed("attack_left"):
+	elif Input.is_action_pressed("attack_left"):
 		anim_direction = Vector2.LEFT
 		return Vector2.LEFT
 	
-	elif Input.is_action_just_pressed("attack_right"):
+	elif Input.is_action_pressed("attack_right"):
 		anim_direction = Vector2.RIGHT
 		return Vector2.RIGHT
 	

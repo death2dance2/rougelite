@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @export var speed: float = 150.0
+@export var max_health: float = 2
+@export var health = 2
 @export var action_queue: Array[String] = ["move", "move", "attack", "skip"]
 var current_action_index: int = 0
 
@@ -15,6 +17,8 @@ var is_processing_action: bool = false
 var actions_per_second = 0
 
 func _ready():
+	if health > max_health:
+		health = max_health
 	actions_per_second = player.actions_per_second
 	execute_next_action()
 
