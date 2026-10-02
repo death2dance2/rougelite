@@ -26,6 +26,7 @@ var is_processing_action: bool = false
 var actions_per_second = 0
 
 func _ready():
+	anim.play("idle")
 	if health > max_health:
 		health = max_health
 	actions_per_second = player.actions_per_second
@@ -128,6 +129,7 @@ func monster_take_damage(amount: int):
 		die()
 
 func die():
+	print("die")
 	anim.play("die")
 	var drip = null
 	var gold_drips = 0
