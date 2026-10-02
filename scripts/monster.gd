@@ -1,5 +1,14 @@
 extends CharacterBody2D
 
+@export var drops: Array[Dictionary] = [
+	{
+		"name": "gold",
+		"min": 1,
+		"max": 10,
+		"rarity": 2
+	}
+]
+
 @export var speed: float = 150.0
 @export var max_health: float = 2
 @export var health = 2
@@ -111,3 +120,25 @@ func perform_attack_action():
 func perform_skip_action():
 	print("AI skipped its turn.")
 	finish_current_action()
+
+func monster_take_damage(amount: int):
+	health -= amount
+	
+	if health <= 0:
+		die()
+
+func die():
+	anim.play("die")
+	var drip = null
+	var gold_drips = 0
+	
+	for i in range(len(drops)):
+		if drops[i]["name"] == "gold":
+			var possible_gold_drips = (randi() * drops[i]["max"])
+			
+			if possible_gold_drips >= drops[i]["min"]:
+				possible_gold_drips = drops[i]["min"]
+			
+			gold_drips += possible_gold_drips
+	
+	player.inventory["gold"] += gold_drips

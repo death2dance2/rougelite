@@ -21,6 +21,11 @@ var health = 5
 @export var actions_per_second: float = 2.5
 @export var max_health: int = 5
 
+@export var inventory: Dictionary = {
+	"sword": 1,
+	"gold": 5
+}
+
 func _ready() -> void:
 	health = max_health
 	global_position = Vector2(5, 5)

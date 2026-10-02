@@ -29,6 +29,11 @@ animations = [{
 "name": &"attack",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": 1,
+"name": &"die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_fttm7")
@@ -70,7 +75,7 @@ action_queue = Array[String](["move", "attack", "skip"])
 texture_filter = 1
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_yce20")
-animation = &"run"
+animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=139651417]
 position = Vector2(9.313226e-10, 3.7252903e-09)
