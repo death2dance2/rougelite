@@ -19,6 +19,7 @@ var current_action_index: int = 0
 @onready var map_layer = $"../TileMapLayer"
 @onready var player = $"../player"
 @onready var raycast = $monster_raycast_2d
+@onready var collision = $CollisionShape2D
 
 var current_path: PackedVector2Array = []
 var path_index: int = 0
@@ -63,7 +64,6 @@ func _physics_process(_delta):
 		global_position = global_position + (global_position.direction_to(target_position) * player.tile_size)
 		move_and_slide()
 
-
 func execute_next_action():
 	if player.global_position.x < global_position.x:
 		anim.flip_h = true
@@ -75,7 +75,6 @@ func execute_next_action():
 		
 	is_processing_action = true
 	var action = action_queue[current_action_index]
-	print("AI Executing action: ", action)
 
 	match action:
 		"move":
@@ -86,6 +85,7 @@ func execute_next_action():
 			perform_skip_action()
 
 func finish_current_action():
+	print("AI moving")
 	velocity = Vector2.ZERO
 	is_processing_action = false
 	current_action_index = (current_action_index + 1) % action_queue.size()
@@ -124,6 +124,7 @@ func perform_skip_action():
 
 func monster_take_damage(amount: int):
 	health -= amount
+	print("Monster took " + str(amount) + " damage")
 	
 	if health <= 0:
 		die()
@@ -144,3 +145,8 @@ func die():
 			gold_drips += possible_gold_drips
 	
 	player.inventory["gold"] += gold_drips
+
+func _on_monster_hurtbox_area_entered(area: Area2D) -> void:
+	if area.name == "sword_ollision":
+		print("monster hit by the sword!")
+		monster_take_damage(player.inventory["sword"])

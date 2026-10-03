@@ -16,7 +16,7 @@ var health = 5
 @onready var anim = $AnimatedSprite2D
 @onready var raycast = $RayCast2D
 @onready var sword_anim = $sword_anim
-@onready var sword_collision = $sword_anim/CollisionShape2D
+@onready var sword_collision = $sword_anim/sword_ollision
 
 @export var actions_per_second: float = 2.5
 @export var max_health: int = 5
