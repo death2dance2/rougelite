@@ -154,9 +154,19 @@
 [ext_resource type="Texture2D" uid="uid://c5dm7l4hwcjfc" path="res://scripts/Fade_Out/fade_out142.png" id="145_02vol"]
 [ext_resource type="Texture2D" uid="uid://3ug6o8cvwqmu" path="res://scripts/Fade_Out/fade_out143.png" id="146_1xs8q"]
 [ext_resource type="Texture2D" uid="uid://b25hfucetq8vl" path="res://scripts/Fade_Out/fade_out144.png" id="147_o8r5q"]
+[ext_resource type="Texture2D" uid="uid://mm5gf3cpvtbs" path="res://art/health/health8.png" id="148_6a1ct"]
+[ext_resource type="Texture2D" uid="uid://5265i222akqr" path="res://art/health/health7.png" id="149_xhrfq"]
 [ext_resource type="Script" uid="uid://do64i7nnci55d" path="res://scenes/tile_map_layer.gd" id="150_2tiby"]
+[ext_resource type="Texture2D" uid="uid://chvaxphd5yqo7" path="res://art/health/health6.png" id="150_2xesh"]
 [ext_resource type="Texture2D" uid="uid://ds2twe1b64mr1" path="res://ladder/ladder4.png" id="151_2tiby"]
+[ext_resource type="Texture2D" uid="uid://skpytvv1f0w0" path="res://art/health/health5.png" id="151_jexbj"]
+[ext_resource type="Texture2D" uid="uid://8faqabs37np1" path="res://art/health/health4.png" id="152_0n3pv"]
+[ext_resource type="Texture2D" uid="uid://jso1ey5hcfbt" path="res://art/health/health3.png" id="153_lgnnt"]
+[ext_resource type="Texture2D" uid="uid://c5l4sixisooa3" path="res://art/health/health2.png" id="154_6r4by"]
+[ext_resource type="Texture2D" uid="uid://b5p300gp2wdo1" path="res://art/health/health1.png" id="155_0gito"]
+[ext_resource type="Texture2D" uid="uid://bmk3euf1wimf5" path="res://art/health/health0.png" id="156_oh722"]
 [ext_resource type="PackedScene" uid="uid://b2v38yn4h14kh" path="res://scenes/monster.tscn" id="157_1m7le"]
+[ext_resource type="Texture2D" uid="uid://dfh7ftqub0y66" path="res://art/New Piskel-1.png (6).png" id="157_xhrfq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onpc1"]
 animations = [{
@@ -606,6 +616,92 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vd5c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("148_6a1ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_xhrfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_2xesh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_jexbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_0n3pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_lgnnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_6r4by")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_0gito")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_oh722")
+}],
+"loop": 0,
+"name": &"gain_hp",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("156_oh722")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_0gito")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_6r4by")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_lgnnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_0n3pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_jexbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_2xesh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_xhrfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_6a1ct")
+}],
+"loop": 0,
+"name": &"lose_hp",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("156_oh722")
+}],
+"loop": 1,
+"name": &"max",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfer4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("157_xhrfq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
 texture = ExtResource("3_jyhfs")
 texture_region_size = Vector2i(10, 10)
@@ -950,6 +1046,20 @@ z_index = 5
 texture_filter = 1
 scale = Vector2(-0.62097865, -0.6554775)
 sprite_frames = SubResource("SpriteFrames_onpc1")
+
+[node name="UI_gold" type="AnimatedSprite2D" parent="Camera2D" unique_id=1771968160]
+texture_filter = 1
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_8vd5c")
+animation = &"gain_hp"
+frame = 8
+frame_progress = 1.0
+
+[node name="Main_UI" type="AnimatedSprite2D" parent="Camera2D" unique_id=1398591715]
+texture_filter = 1
+position = Vector2(-0.15015021, -1.8318318)
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_xfer4")
 
 [node name="player" parent="." unique_id=736314522 instance=ExtResource("1_o5qli")]
 position = Vector2(5, 5)
