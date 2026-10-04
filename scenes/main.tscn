@@ -1046,13 +1046,6 @@ position = Vector2(-3.3633637, -1.8018019)
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_xfer4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D" unique_id=1557405312]
-offset_left = -3.8337786
-offset_top = -2.1690257
-offset_right = -2.7337785
-offset_bottom = -2.0490258
-scale = Vector2(1.0533329, 1.0804808)
-
 [node name="player" parent="." unique_id=736314522 instance=ExtResource("1_o5qli")]
 position = Vector2(5, 5)
 scale = Vector2(33.3, 33.3)

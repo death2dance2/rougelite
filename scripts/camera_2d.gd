@@ -4,44 +4,29 @@ extends Camera2D
 @export var target: Node2D
 @export var follow_speed: float = 15.0
 
-@onready var hp_container = $UI_main
-@onready var hp_template = $UI_hp
+@onready var cell_template: AnimatedSprite2D = $UI_hp
+const Player2D = preload("res://scripts/player2d.gd")
+var player: Player2D = Player2D.new()
 
-var hp_cells = []
+var hp_cells: Array[AnimatedSprite2D] = []
 
 func _ready() -> void:
 	if not target:
 		target = get_tree().get_first_node_in_group("player")
 	
-	if target and "health" in target:
-		make_cells(target.health)
-	else:
-		push_warning("Camera Target not found, or target does not have a 'health' variable!")
-		make_cells(3)
-		
-	make_current()
+	cell_template.hide()
 	
-	if hp_template:
-		hp_template.hide()
+	for i in range(player.max_health):
+		var sprite_clone = cell_template.duplicate() as AnimatedSprite2D
+		add_child(sprite_clone)
 		
+		sprite_clone.show()
+		sprite_clone.position = Vector2(-3.752, -2.102)
+		sprite_clone.position.x += i * 16
+		hp_cells.append(sprite_clone)
+
 func _process(delta: float) -> void:
 	if target == null:
 		return
 		
 	global_position = global_position.lerp(target.global_position, follow_speed * delta).round()
-
-func make_cells(amount: int):
-	for cell in hp_cells:
-		if is_instance_valid(cell):
-			cell.queue_free()
-	hp_cells.clear()
-	
-	for i in range(amount):
-		
-		var cell_clone = hp_template.duplicate()
-		cell_clone.show()	
-		cell_clone.name = "cell_" + str(i)
-		hp_container.add_child(cell_clone)
-		hp_cells.append(cell_clone)
-		
-		cell_clone.animation = "max"
