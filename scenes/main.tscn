@@ -154,12 +154,11 @@
 [ext_resource type="Texture2D" uid="uid://c5dm7l4hwcjfc" path="res://scripts/Fade_Out/fade_out142.png" id="145_02vol"]
 [ext_resource type="Texture2D" uid="uid://3ug6o8cvwqmu" path="res://scripts/Fade_Out/fade_out143.png" id="146_1xs8q"]
 [ext_resource type="Texture2D" uid="uid://b25hfucetq8vl" path="res://scripts/Fade_Out/fade_out144.png" id="147_o8r5q"]
-[ext_resource type="Texture2D" uid="uid://5mjbif0qfkcp" path="res://art/health/New Piskel (17)/sprite_5.png" id="148_j5vj0"]
+[ext_resource type="Texture2D" uid="uid://5mjbif0qfkcp" path="res://art/health/New Piskel (17)/sprite_5.png" id="149_avynn"]
+[ext_resource type="Script" uid="uid://26hg6kqa1bij" path="res://scenes/h_box_container.gd" id="149_eo1ke"]
 [ext_resource type="Texture2D" uid="uid://b8xylgi3jfh2x" path="res://art/health/New Piskel (17)/sprite_4.png" id="149_kec7f"]
 [ext_resource type="Script" uid="uid://do64i7nnci55d" path="res://scenes/tile_map_layer.gd" id="150_2tiby"]
-[ext_resource type="Texture2D" uid="uid://bcrkrvftf04l7" path="res://art/health/New Piskel (17)/sprite_3.png" id="150_jgau6"]
 [ext_resource type="Texture2D" uid="uid://ds2twe1b64mr1" path="res://ladder/ladder4.png" id="151_2tiby"]
-[ext_resource type="Texture2D" uid="uid://xufl2vpi77l4" path="res://art/health/New Piskel (17)/sprite_2.png" id="151_6a1ct"]
 [ext_resource type="Texture2D" uid="uid://dl12crm1ddtjk" path="res://art/health/New Piskel (17)/sprite_1.png" id="152_xhrfq"]
 [ext_resource type="PackedScene" uid="uid://b2v38yn4h14kh" path="res://scenes/monster.tscn" id="157_1m7le"]
 [ext_resource type="Texture2D" uid="uid://ben3avgrbyyjj" path="res://art/health/New Piskel (16)/New_hp0.png" id="157_xhrfq"]
@@ -612,49 +611,26 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8vd5c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfer4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("148_j5vj0")
+"texture": ExtResource("157_xhrfq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mkavw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("149_avynn")
 }],
 "loop": 1,
 "name": &"empty",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("149_kec7f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("150_jgau6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("151_6a1ct")
-}, {
-"duration": 1.0,
-"texture": ExtResource("152_xhrfq")
-}],
-"loop": 0,
-"name": &"gain_hp",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("152_xhrfq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("151_6a1ct")
-}, {
-"duration": 1.0,
-"texture": ExtResource("150_jgau6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("149_kec7f")
-}],
-"loop": 0,
-"name": &"lose_hp",
-"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -670,17 +646,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"none",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xfer4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("157_xhrfq")
-}],
-"loop": 1,
-"name": &"default",
 "speed": 5.0
 }]
 
@@ -1015,13 +980,14 @@ script = ExtResource("1_choun")
 
 [node name="Node" type="Node" parent="." unique_id=244531502]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=428601767]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=428601767 node_paths=PackedStringArray("target")]
 z_index = 20
 position = Vector2(-4.7683716e-07, -17.000002)
 scale = Vector2(33.3, 33.3)
 zoom = Vector2(4, 4)
 script = ExtResource("2_0wfyh")
-follow_speed = 0.0
+target = NodePath("../player")
+follow_speed = 10.0
 
 [node name="Fade_out" type="AnimatedSprite2D" parent="Camera2D" unique_id=620667801 groups=["UI"]]
 z_index = 5
@@ -1029,22 +995,62 @@ texture_filter = 1
 scale = Vector2(-0.62097865, -0.6554775)
 sprite_frames = SubResource("SpriteFrames_onpc1")
 
-[node name="UI_hp" type="AnimatedSprite2D" parent="Camera2D" unique_id=1771968160 groups=["UI"]]
-z_index = 11
-texture_filter = 1
-position = Vector2(-3.753754, -2.1021023)
-scale = Vector2(0.03, 0.03)
-sprite_frames = SubResource("SpriteFrames_8vd5c")
-animation = &"gain_hp"
-frame = 3
-frame_progress = 1.0
-
 [node name="UI_main" type="AnimatedSprite2D" parent="Camera2D" unique_id=971341422 groups=["UI"]]
 z_index = 10
 texture_filter = 1
 position = Vector2(-3.3633637, -1.8018019)
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_xfer4")
+script = ExtResource("149_eo1ke")
+
+[node name="hp_1" type="AnimatedSprite2D" parent="Camera2D/UI_main" unique_id=2121380034]
+z_index = 11
+texture_filter = 1
+position = Vector2(-13.013001, -10.01)
+sprite_frames = SubResource("SpriteFrames_mkavw")
+animation = &"max"
+
+[node name="hp_2" type="AnimatedSprite2D" parent="Camera2D/UI_main" unique_id=1576505761]
+z_index = 11
+texture_filter = 1
+position = Vector2(-8.008004, -10.01)
+sprite_frames = SubResource("SpriteFrames_mkavw")
+animation = &"max"
+
+[node name="hp_3" type="AnimatedSprite2D" parent="Camera2D/UI_main" unique_id=839948501]
+z_index = 11
+texture_filter = 1
+position = Vector2(-3.0029993, -10.01)
+sprite_frames = SubResource("SpriteFrames_mkavw")
+animation = &"max"
+
+[node name="hp_4" type="AnimatedSprite2D" parent="Camera2D/UI_main" unique_id=958079061]
+z_index = 11
+texture_filter = 1
+position = Vector2(2.0020056, -10.01)
+sprite_frames = SubResource("SpriteFrames_mkavw")
+animation = &"max"
+
+[node name="hp_5" type="AnimatedSprite2D" parent="Camera2D/UI_main" unique_id=1905370467]
+z_index = 11
+texture_filter = 1
+position = Vector2(7.007018, -10.01)
+sprite_frames = SubResource("SpriteFrames_mkavw")
+animation = &"max"
+
+[node name="hp_6" type="AnimatedSprite2D" parent="Camera2D/UI_main" unique_id=257401463]
+z_index = 11
+texture_filter = 1
+position = Vector2(12.012023, -10.01)
+sprite_frames = SubResource("SpriteFrames_mkavw")
+animation = &"max"
+
+[node name="hp_7" type="AnimatedSprite2D" parent="Camera2D/UI_main" unique_id=407937276]
+z_index = 11
+texture_filter = 1
+position = Vector2(17.017029, -10.01)
+sprite_frames = SubResource("SpriteFrames_mkavw")
+animation = &"max"
 
 [node name="player" parent="." unique_id=736314522 instance=ExtResource("1_o5qli")]
 position = Vector2(5, 5)
