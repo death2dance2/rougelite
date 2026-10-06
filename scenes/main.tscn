@@ -978,8 +978,6 @@ animations = [{
 [node name="main" type="Node2D" unique_id=1325483065]
 script = ExtResource("1_choun")
 
-[node name="Node" type="Node" parent="." unique_id=244531502]
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=428601767 node_paths=PackedStringArray("target")]
 z_index = 20
 position = Vector2(-4.7683716e-07, -17.000002)
@@ -992,7 +990,8 @@ follow_speed = 10.0
 [node name="Fade_out" type="AnimatedSprite2D" parent="Camera2D" unique_id=620667801 groups=["UI"]]
 z_index = 5
 texture_filter = 1
-scale = Vector2(-0.62097865, -0.6554775)
+rotation = -3.1415925
+scale = Vector2(0.62097865, 0.6554775)
 sprite_frames = SubResource("SpriteFrames_onpc1")
 
 [node name="UI_main" type="AnimatedSprite2D" parent="Camera2D" unique_id=971341422 groups=["UI"]]

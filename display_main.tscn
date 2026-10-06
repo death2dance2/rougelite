@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://5avd44w4ynpp"]
+
+[ext_resource type="Script" uid="uid://cmktkpsucs0vc" path="res://scripts/game_manager.gd" id="1_7xrw1"]
+[ext_resource type="PackedScene" uid="uid://cqow47bch5ocs" path="res://scenes/main.tscn" id="2_lk2ka"]
+
+[node name="main" type="Node2D" unique_id=1325483065]
+script = ExtResource("1_7xrw1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1362304279]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1220299337]
+offset_left = -0.033042908
+offset_top = -1.1853104
+offset_right = 39.966957
+offset_bottom = 38.81469
+stretch_shrink = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=9976186]
+handle_input_locally = false
+size = Vector2i(6, 6)
+render_target_update_mode = 4
+
+[node name="main" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=579916891 instance=ExtResource("2_lk2ka")]

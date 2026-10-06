@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Rougelike"
-run/main_scene="uid://cqow47bch5ocs"
+run/main_scene="uid://5avd44w4ynpp"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://art/icon.svg"
 

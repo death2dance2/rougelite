@@ -17,13 +17,13 @@ var hp_cells: Dictionary = {
 }
 
 func _ready() -> void:
-	hp_cells["1"]["sprite"] = $UI_main/hp_1
-	hp_cells["2"]["sprite"] = $UI_main/hp_2
-	hp_cells["3"]["sprite"] = $UI_main/hp_3
-	hp_cells["4"]["sprite"] = $UI_main/hp_4
-	hp_cells["5"]["sprite"] = $UI_main/hp_5
-	hp_cells["6"]["sprite"] = $UI_main/hp_6
-	hp_cells["7"]["sprite"] = $UI_main/hp_7
+	hp_cells["1"]["sprite"] = $hp_1
+	hp_cells["2"]["sprite"] = $hp_2
+	hp_cells["3"]["sprite"] = $hp_3
+	hp_cells["4"]["sprite"] = $hp_4
+	hp_cells["5"]["sprite"] = $hp_5
+	hp_cells["6"]["sprite"] = $hp_6
+	hp_cells["7"]["sprite"] = $hp_7
 	
 	last_hp = player.health
 	current_hp = player.health
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 		elif j > current_hp:
 			current_sprite.play("none")
 	
-	for i in range(hp_cells):
-		var current_cell = hp_cells[str(i)]["sprite"]
-		if hp_cells[str(i)]["id"] == 1:
+	for i in range(len(hp_cells)):
+		var cell = hp_cells.get(str(i))
+		if cell and cell.get("id") == 1:
 			pass
