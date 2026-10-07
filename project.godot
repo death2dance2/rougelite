@@ -21,6 +21,7 @@ GameManager="*uid://cmktkpsucs0vc"
 
 [display]
 
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
 [input]
