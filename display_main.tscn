@@ -8,17 +8,6 @@ script = ExtResource("1_7xrw1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1362304279]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=1549686645]
-root_node = NodePath("ColorRect")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/AnimationPlayer" unique_id=724571579]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1220299337]
 texture_filter = 1
 anchors_preset = 15

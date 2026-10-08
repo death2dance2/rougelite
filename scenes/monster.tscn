@@ -87,3 +87,5 @@ scale = Vector2(0.1, 0.1)
 target_position = Vector2(0, 4)
 collision_mask = 65535
 collide_with_areas = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=230166430]
